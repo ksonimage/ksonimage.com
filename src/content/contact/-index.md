@@ -1,6 +1,6 @@
 ---
-title: "Contact"
-description: "this is meta description"
+title: "문의"
+description: ""
 meta_title: ""
 image: ""
 draft: false

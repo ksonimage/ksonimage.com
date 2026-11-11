@@ -1,0 +1,72 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import config from "@/config/config.json";
+import BlogList from "@/components/BlogList.astro";
+import Pagination from "@/components/Pagination.astro";
+
+const BLOG_FOLDER = "blog";
+const POSTS_PER_PAGE = 7;
+
+// 1. homepage 컬렉션 안전 로딩 (en/-index 파일이 없을 경우 fallback 처리)
+let homepage: any = null;
+try {
+  homepage = await getListPage("homepage", "en/-index");
+} catch (e) {
+  // en/-index.md 가 없을 경우 예외 처리
+  homepage = null;
+}
+
+const title = homepage?.data?.title || "Home";
+const description = homepage?.data?.description || "";
+
+// 2. 전체 포스트 로딩 및 영문 포스트 전용 필터링
+const allPosts = await getSinglePage(BLOG_FOLDER);
+
+const enPosts = allPosts.filter((post) => {
+  const id = post.id || "";
+  const slug = post.slug || "";
+  const isEn = id.startsWith("en/") || slug.startsWith("en/");
+  const isIndex = id.includes("-index") || slug.includes("-index");
+
+  return isEn && !isIndex;
+});
+
+// 3. 영문 슬러그 정제 ('en/' 접두사 및 확장자 제거)
+const formattedPosts = enPosts.map((post) => {
+  const rawSlug = post.slug || post.id;
+  const cleanSlug = rawSlug
+    .replace(/^en\//, "")
+    .replace(/\.(md|mdx)$/, "");
+
+  return {
+    ...post,
+    slug: cleanSlug,
+  };
+});
+
+// 4. 날짜순 정렬 및 페이지네이션 데이터 생성
+const sortedPosts = sortByDate(formattedPosts);
+
+const totalPages: number = Math.ceil(
+  formattedPosts.length / POSTS_PER_PAGE
+);
+
+const currentPosts = sortedPosts.slice(0, POSTS_PER_PAGE);
+---
+
+<Base title={title} description={description}>
+  {/* 메인 컨테이너 레이아웃 */}
+  <div class="w-full pt-28 md:pt-36 pb-16">
+    {/* 블로그 포스트 리스트 */}
+    <BlogList posts={currentPosts} />
+
+    {/* 페이지네이션 */}
+    {totalPages > 1 && (
+      <div class="mt-8 mb-16 flex justify-center">
+        <Pagination section="en" currentPage={1} totalPages={totalPages} />
+      </div>
+    )}
+  </div>
+</Base>

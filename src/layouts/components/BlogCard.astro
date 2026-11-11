@@ -7,15 +7,47 @@ import ImageMod from "./ImageMod.astro";
 
 const {
   summary_length,
-  blog_folder,
 }: { summary_length: number; blog_folder: string } = config.settings;
-const { data } = Astro.props;
-const { title, image, date, author, categories } = data.data;
+const { post } = Astro.props;
+
+// 1. post 및 post.data 방어 검증
+const hasData = Boolean(post && post.data);
+const postData = hasData ? post.data : {};
+
+// 2. data 내부 속성 안전 추출
+const title = String(postData.title || "");
+const image = String(postData.image || "");
+const date = postData.date;
+const author = String(postData.author || "");
+const categories: string[] = Array.isArray(postData.categories) ? postData.categories : [];
+
+// 3. 현재 접속 경로 및 다국어 탐색
+const { pathname } = Astro.url;
+const isEnPage = pathname === "/en" || pathname.startsWith("/en/");
+
+// 4. ID/slug 정제 ('en/' 접두사, 'blog/' 접두사, '.md' 확장자 완벽 제거)
+const rawId = post?.slug || post?.id || "";
+const cleanId = String(rawId)
+  .replace(/^en\//, "")
+  .replace(/^blog\//, "")
+  .replace(/\.(md|mdx)$/, "");
+
+// 5. 언어별 라우터 경로 고정 생성
+const postUrl = isEnPage || String(rawId).startsWith("en/")
+  ? `/en/blog/${cleanId}`
+  : `/blog/${cleanId}`;
+
+// 6. 작성자 URL
+const authorUrl = isEnPage ? `/en/authors/${slugify(author)}` : `/authors/${slugify(author)}`;
+
+// 7. 요약 텍스트 추출
+const bodyContent = post?.body || "";
+const summaryText = plainify(bodyContent.slice(0, Number(summary_length)));
 ---
 
-<div class="bg-body dark:bg-darkmode-body">
-  {
-    image && (
+{hasData && (
+  <div class="bg-body dark:bg-darkmode-body">
+    {image && (
       <ImageMod
         class="mb-6 w-full rounded"
         src={image}
@@ -24,35 +56,42 @@ const { title, image, date, author, categories } = data.data;
         height={230}
         format="webp"
       />
-    )
-  }
-  <h4 class="mb-3">
-    <a href={`/${blog_folder}/${data.id}`}>
-      {title}
-    </a>
-  </h4>
-  <ul class="mb-4">
-    <li class="mr-4 inline-block">
-      <a href={`/authors/${slugify(author)}`}>
-        <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
-        {humanize(author)}
+    )}
+    <h4 class="mb-3 uppercase">
+      <a href={postUrl}>
+        {title}
       </a>
-    </li>
-    <li class="mr-4 inline-block">
-      <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
-      {
-        categories.map((category: string, index: number) => (
-          <a href={`/categories/${slugify(category)}`}>
-            {humanize(category)}
-            {index !== categories.length - 1 && ","}
+    </h4>
+    <ul class="mb-4">
+      {author && (
+        <li class="mr-4 inline-block">
+          <a href={authorUrl}>
+            <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
+            {humanize(author)}
           </a>
-        ))
-      }
-    </li>
-    {date && <li class="inline-block">{dateFormat(date)}</li>}
-  </ul>
-  <p class="mb-6">{plainify(data.body?.slice(0, Number(summary_length)))}</p>
-  <a class="btn btn-outline-primary btn-sm" href={`/${blog_folder}/${data.id}`}>
-    read more
-  </a>
-</div>
+        </li>
+      )}
+      {categories && categories.length > 0 && (
+        <li class="mr-4 inline-block">
+          <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
+          {categories.map((category: string, index: number) => {
+            const categoryUrl = isEnPage
+              ? `/en/categories/${slugify(category)}`
+              : `/categories/${slugify(category)}`;
+            return (
+              <a href={categoryUrl} class="mr-1">
+                {humanize(category)}
+                {index !== categories.length - 1 && ","}
+              </a>
+            );
+          })}
+        </li>
+      )}
+      {date && <li class="inline-block">{dateFormat(date)}</li>}
+    </ul>
+    {summaryText && <p class="mb-6">{summaryText}</p>}
+    <a class="btn btn-outline-primary btn-sm uppercase" href={postUrl}>
+      read more
+    </a>
+  </div>
+)}

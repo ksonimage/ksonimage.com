@@ -1,0 +1,53 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import BlogList from "@/components/BlogList.astro";
+import Pagination from "@/components/Pagination.astro";
+
+export async function getStaticPaths({ paginate }: any) {
+  const POSTS_PER_PAGE = 7;
+  const allPosts = await getSinglePage("blog");
+
+  const krPosts = allPosts.filter((post: any) => {
+    const id = post.id || "";
+    const slug = post.slug || "";
+    const isEn = id.startsWith("en/") || slug.startsWith("en/");
+    const isIndex = id.includes("-index") || slug.includes("-index");
+
+    return !isEn && !isIndex;
+  });
+
+  const formattedPosts = krPosts.map((post: any) => {
+    const rawSlug = post.slug || post.id;
+    const cleanSlug = rawSlug.replace(/\.(md|mdx)$/, "");
+    return {
+      ...post,
+      slug: cleanSlug,
+    };
+  });
+
+  const sortedPosts = sortByDate(formattedPosts);
+
+  return paginate(sortedPosts, { pageSize: POSTS_PER_PAGE });
+}
+
+// 💡 Astro의 paginate()가 넘겨주는 page 객체
+const { page } = Astro.props;
+---
+
+<Base title={`홈 - ${page.currentPage}페이지`}>
+  <div class="w-full px-0 pt-36">
+    <BlogList posts={page.data} />
+
+    {/* 💡 조건문 조건과 Props 넘김을 명확하게 처리합니다 */}
+    {page && page.lastPage > 1 && (
+      <div class="mt-8 mb-16 flex justify-center">
+        <Pagination
+          currentPage={page.currentPage}
+          totalPages={page.lastPage || page.totalPages}
+        />
+      </div>
+    )}
+  </div>
+</Base>

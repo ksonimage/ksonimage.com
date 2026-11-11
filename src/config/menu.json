@@ -1,57 +1,76 @@
 {
   "main": [
     {
-      "name": "Home",
-      "url": "/"
-    },
-    {
-      "name": "About",
-      "url": "/about"
-    },
-    {
-      "name": "Elements",
-      "url": "/elements"
-    },
-    {
-      "name": "Pages",
+      "name": "작품",
       "url": "",
       "hasChildren": true,
       "children": [
-        {
-          "name": "Contact",
-          "url": "/contact"
-        },
-        {
-          "name": "Blog",
-          "url": "/blog"
-        },
-        {
-          "name": "Authors",
-          "url": "/authors"
-        },
-        {
-          "name": "Categories",
-          "url": "/categories"
-        },
-        {
-          "name": "Tags",
-          "url": "/tags"
-        },
-        {
-          "name": "404 Page",
-          "url": "/404"
-        }
+        { "name": "거룩한 성", "url": "/the-holy-city"  },
+        { "name": "울지 마, 아이야", "url": "/weep-not-child"  },
+        { "name": "유배의 풍경", "url": "/exilandscape"  },
+        { "name": "시민 K의 초상", "url": "/citizenk"  },
+        { "name": "파이돈", "url": "/phaedo"  },
+        { "name": "가위 바위 보", "url": "/rock_scissors_paper"  },
+        { "name": "로미오와 줄리엣", "url": "/romeo-juliet"  },
+        { "name": "거울 없는 방", "url": "/a-room-without-mirrors"  },
+        { "name": "모순론", "url": "/on-contradiction"  },
+        { "name": "토끼와 거북이", "url": "/tortoise-and-hare"  },
+        { "name": "D+1:2012-2015", "url": "/d1-2012-2015"  },
+        { "name": "캐릭터 Revisited", "url": "/characters-revisited"  },
+        { "name": "자유부인", "url": "/mm-freedom"  },
+        { "name": "캐릭터", "url": "/characters"  },
+        { "name": "리서치", "url": "/research"  },
+        { "name": "Apparition", "url": "/apparition"  },
+        { "name": "파편의 경치", "url": "/fragmentary-landscapes"  },
+        { "name": "Amusement Epitome", "url": "/amusement-epitome"  },
+        { "name": "요요기 공원", "url": "/yoyogi-park"  },
+        { "name": "단속평형", "url": "/punk-eek"  },
+        { "name": "제3언어", "url": "/the-third-tongue"  }
       ]
-    }
+    },
+    { "name": "작가", "url": "/cv" },
+    { "name": "글", "url": "/text" },
+    { "name": "아카이브", "url": "/blog" },
+    { "name": "문의", "url": "/contact" },
+    { "name": "ENGLISH", "url": "/en" }
+
+  ],
+  "main_en": [
+    {
+      "name": "WORKS",
+      "url": "",
+      "hasChildren": true,
+      "children": [
+        { "name": "THE HOLY CITY", "url": "/en/the-holy-city"  },
+        { "name": "WEEP NOT, CHILD", "url": "/en/weep-not-child"  },
+        { "name": "EXILANDSCAPE", "url": "/en/exilandscape"  },
+        { "name": "A PORTRAIT OF CITIZEN K", "url": "/en/citizenk"  },
+        { "name": "PHAEDO", "url": "/en/phaedo"  },
+        { "name": "ROCK SCISSORS PAPER", "url": "/en/rock_scissors_paper"  },
+        { "name": "ROMEO AND JULIET", "url": "/en/romeo-juliet"  },
+        { "name": "A ROOM WITHOUT MIRRORS", "url": "/en/a-room-without-mirrors"  },
+        { "name": "ON CONTRADICTION", "url": "/en/on-contradiction"  },
+        { "name": "THE TORTOISE AND THE HARE", "url": "/en/tortoise-and-hare"  },
+        { "name": "D+1:2012-2015", "url": "/en/d1-2012-2015"  },
+        { "name": "CHARACTERS REVISITED", "url": "/en/characters-revisited"  },
+        { "name": "MADAME FREEDOM", "url": "/en/mm-freedom"  },
+        { "name": "CHARACTERS", "url": "/en/characters"  },
+        { "name": "RE-SEARCH", "url": "/en/re-search"  },
+        { "name": "APPARITION", "url": "/en/apparition"  },
+        { "name": "FRAMGMENTARY LANDSCAPES", "url": "/en/fragmentary-landscapes"  },
+        { "name": "AMUSEMENT EPITOME", "url": "/en/amusement-epitome"  },
+        { "name": "YOYOGI PARK", "url": "/en/yoyogi-park"  },
+        { "name": "PUNK EEK", "url": "/en/punk-eek"  },
+        { "name": "THE THIRD TONGUE", "url": "/en/the-third-tongue"  }
+      ]
+    },
+    { "name": "ARTIST", "url": "/en/cv" },
+    { "name": "TEXT", "url": "/en/text" },
+    { "name": "ARCHIVE", "url": "/en/blog" },
+    { "name": "CONTACT", "url": "/en/contact" },
+    { "name": "한국어", "url": "/" }
+
   ],
   "footer": [
-    {
-      "name": "Elements",
-      "url": "/elements"
-    },
-    {
-      "name": "Privacy Policy",
-      "url": "/privacy-policy"
-    }
   ]
 }

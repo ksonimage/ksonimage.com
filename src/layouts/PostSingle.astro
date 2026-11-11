@@ -1,113 +1,546 @@
 ---
 import BlogCard from "@/components/BlogCard.astro";
-import Share from "@/components/Share.astro";
-import Disqus from "@/helpers/Disqus";
+import ImageMod from "@/components/ImageMod.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
-import dateFormat from "@/lib/utils/dateFormat";
 import similarItems from "@/lib/utils/similarItems";
-import { humanize, markdownify, slugify } from "@/lib/utils/textConverter";
+import { humanize, slugify } from "@/lib/utils/textConverter";
 import { render } from "astro:content";
-import { FaRegClock, FaRegFolder, FaRegUserCircle } from "react-icons/fa";
-import ImageMod from "./components/ImageMod.astro";
+import { FaRegClock, FaMapMarkerAlt, FaExternalLinkAlt } from "react-icons/fa";
 
 const COLLECTION_FOLDER = "blog";
 const { post } = Astro.props;
 
-const posts = await getSinglePage(COLLECTION_FOLDER);
-const similarPosts = similarItems(post, posts);
-const { Content } = await render(post);
-const { title, description, author, categories, image, date, tags } = post.data;
+// 1. 현재 접속 경로 및 슬러그를 기반으로 언어 환경 감지 (EN 여부 판단)
+const { pathname } = Astro.url;
+const rawSlug = post?.slug || post?.id || "";
+const isEnPage = pathname === "/en" || pathname.startsWith("/en/") || String(rawSlug).startsWith("en/");
+
+// 2. 다국어 라벨 딕셔너리
+const labels = {
+  category: isEnPage ? "Category" : "",
+  date: isEnPage ? "Date" : "기간",
+  venue: isEnPage ? "Venue" : "장소",
+  artist: isEnPage ? "Artist" : "참여 작가",
+  organizer: isEnPage ? "Organizer" : "주최",
+  note: isEnPage ? "Note" : "기타",
+  website: isEnPage ? "More info." : "상세정보",
+  posted: isEnPage ? "Posted" : "게시일",
+  map: "Map"
+};
+
+// 3. YYYY-MM-DD 날짜 포맷팅 함수
+const formatDate = (dateString: string | Date) => {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return String(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
+// 연관 글 안전 로딩
+let similarPosts: any[] = [];
+try {
+  const posts = await getSinglePage(COLLECTION_FOLDER);
+  if (post && posts) {
+    similarPosts = similarItems(post, posts) || [];
+  }
+} catch (e) {
+  similarPosts = [];
+}
+
+let ContentComponent = null;
+if (post) {
+  const rendered = await render(post);
+  ContentComponent = rendered.Content;
+}
+
+const postData = post?.data || {};
+
+// 필드 바인딩
+const rawTitle = String(postData.title || "");
+const author = String(postData.author || "");
+const image = String(postData.image || "");
+const gallery = Array.isArray(postData.gallery) ? postData.gallery : [];
+const date = postData.date || postData.pubDate;
+const startDate = postData.startDate;
+const endDate = postData.endDate;
+const venue = String(postData.venue || "");
+const artistList = Array.isArray(postData.artist) ? postData.artist : [];
+const organizer = String(postData.organizer || "");
+const link = String(postData.link || "");
+const mapUrl = String(postData.mapUrl || "");
+const etcList = Array.isArray(postData.etc) ? postData.etc : [];
+const typesList = Array.isArray(postData.types) ? postData.types : [];
+const categoriesList = Array.isArray(postData.categories) ? postData.categories : [];
+const tagsList = Array.isArray(postData.tags) ? postData.tags : [];
+
+const plainTitle = rawTitle.replace(/["'\\`]/g, "").replace(/[\r\n]+/g, " ").trim();
+
+// YYYY-MM-DD 포맷 적용
+const formattedDate = formatDate(date);
+const formattedStartDate = formatDate(startDate);
+const formattedEndDate = formatDate(endDate);
+
+const categories = categoriesList.map((cat: string) => ({
+  name: humanize(cat),
+  url: (isEnPage ? "/en/categories/" : "/categories/") + slugify(cat),
+  raw: cat
+}));
+
+const tags = tagsList.map((tag: string) => ({
+  name: humanize(tag),
+  url: (isEnPage ? "/en/tags/" : "/tags/") + slugify(tag),
+  raw: tag
+}));
+
+// Strict 데이터 검증 조건
+const isGalleryMode =
+  Array.isArray(gallery) &&
+  gallery.filter((url: any) => typeof url === "string" && url.trim().length > 0).length > 0;
+const hasImage = typeof image === "string" && image.trim().length > 0;
+const hasDate = Boolean(date);
+const hasCategories = categories.length > 0;
+const hasTags = tags.length > 0;
+const hasContent = Boolean(ContentComponent);
 ---
 
-<section class="section pt-7">
-  <div class="container">
-    <div class="row justify-center">
-      <article class="lg:col-10">
-        {
-          image && (
-            <div class="mb-10">
+<section class="text-gray-900 body-font w-full">
+
+  {/* 1. 최상단 히어로 비주얼 (isGalleryMode 일 때만 출력) */}
+  {isGalleryMode && (
+    <div id="hero-slider" class="relative w-full overflow-hidden mb-10 border-b border-gray-200 group bg-black">
+      <div id="slider-track" class="flex w-full h-[60vh] sm:h-[75vh] lg:h-[80vh] will-change-transform">
+        {gallery.map((imgUrl: string, idx: number) => (
+          <div class="shrink-0 w-full min-w-full h-full overflow-hidden">
+            <img
+              src={imgUrl}
+              alt={`${plainTitle} 설치 사진 ${idx + 1}`}
+              class="w-full h-full object-cover object-center select-none"
+            />
+          </div>
+        ))}
+        {/* 무한 순환용 복제본 */}
+        <div class="shrink-0 w-full min-w-full h-full overflow-hidden">
+          <img
+            src={gallery[0]}
+            alt={`${plainTitle} 설치 사진 1 (연속)`}
+            class="w-full h-full object-cover object-center select-none"
+          />
+        </div>
+      </div>
+
+      {/* 좌우 화살표 버튼 */}
+      <button
+        id="btn-prev"
+        aria-label="Previous Slide"
+        class="absolute left-0 top-0 bottom-0 px-4 sm:px-8 bg-black/0 hover:bg-black/20 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center cursor-pointer select-none z-10"
+      >
+        <span class="text-2xl sm:text-3xl font-light drop-shadow-md">‹</span>
+      </button>
+      <button
+        id="btn-next"
+        aria-label="Next Slide"
+        class="absolute right-0 top-0 bottom-0 px-4 sm:px-8 bg-black/0 hover:bg-black/20 text-white opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center cursor-pointer select-none z-10"
+      >
+        <span class="text-2xl sm:text-3xl font-light drop-shadow-md">›</span>
+      </button>
+    </div>
+  )}
+
+  {/* 메인 컨테이너 영역 */}
+  <div class={`container px-5 pb-16 mx-auto ${!isGalleryMode ? 'pt-10' : ''}`}>
+
+    {/* 2. 전폭 전시 제목 행 */}
+    <div class="w-full pb-8 mb-10">
+      <h1 class="text-gray-900 text-2xl sm:text-4xl lg:text-5xl font-normal title-font leading-snug uppercase">
+        {plainTitle}
+      </h1>
+    </div>
+
+    {/* 3. 하단 2컬럼 레이아웃 */}
+    <div class="flex flex-col lg:flex-row">
+
+      {/* 3-A. 좌측 컬럼 (1/4 폭: 갤러리 있으면 개요 정보 / 없으면 포스터 이미지) */}
+      <aside class="lg:w-1/4 w-full mb-10 lg:mb-0">
+        <div class="sticky top-10 space-y-8">
+
+          {/* [CASE 1] 갤러리가 있을 때: 좌측 컬럼에 '개요 정보' 배치 */}
+          {isGalleryMode && (
+            <div class="space-y-4 text-sm font-mono">
+              {/* 1. 카테고리 */}
+              {(hasCategories || typesList.length > 0) && (
+                <div>
+                  <span class="block text-xs uppercase tracking-wider text-gray-400 mb-1">{labels.category}</span>
+                  <div class="flex flex-wrap gap-1.5">
+                    {categories.map((cat: any) => (
+                      <a
+                        href={cat.url}
+                        class="text-xs px-2 py-0.5 border border-black text-black font-medium hover:bg-black hover:text-white transition uppercase"
+                      >
+                        {cat.name}
+                      </a>
+                    ))}
+                    {typesList.map((t: string) => (
+                      <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-800 font-medium">
+                        {t}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              )}
+
+              {/* 2. 행사 기간 */}
+              {(startDate || endDate) && (
+                <div>
+                  <span class="block text-xs uppercase tracking-wider text-gray-400 mb-0.5">{labels.date}</span>
+                  <p class="font-medium text-gray-900">
+                    {formattedStartDate} {formattedEndDate && `~ ${formattedEndDate}`}
+                  </p>
+                </div>
+              )}
+
+              {/* 3. 장소 & 지도 링크 */}
+              {venue && (
+                <div>
+                  <span class="block text-xs uppercase tracking-wider text-gray-400 mb-0.5">{labels.venue}</span>
+                  <div class="flex items-center gap-2">
+                    <p class="font-medium text-gray-900">{venue}</p>
+                    {mapUrl && (
+                      <a
+                        href={mapUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center gap-1 text-xs text-black underline underline-offset-2 hover:opacity-60 shrink-0"
+                      >
+                        <FaMapMarkerAlt class="text-[10px]" /> {labels.map}
+                      </a>
+                    )}
+                  </div>
+                </div>
+              )}
+
+              {/* 4. 참여 작가 */}
+              {artistList.length > 0 && (
+                <div>
+                  <span class="block text-xs uppercase tracking-wider text-gray-400 mb-0.5">{labels.artist}</span>
+                  <p class="font-medium text-gray-900">{artistList.join(", ")}</p>
+                </div>
+              )}
+
+              {/* 5. 주최 */}
+              {organizer && (
+                <div>
+                  <span class="block text-xs uppercase tracking-wider text-gray-400 mb-0.5">{labels.organizer}</span>
+                  <p class="font-medium text-gray-900">{organizer}</p>
+                </div>
+              )}
+
+              {/* 6. 참고 사항 */}
+              {etcList.length > 0 && (
+                <div>
+                  <span class="block text-xs uppercase tracking-wider text-gray-400 mb-1">{labels.note}</span>
+                  <ul class="space-y-1 text-xs text-gray-700 whitespace-pre-line font-sans">
+                    {etcList.map((item: string) => (
+                      <li class="flex items-start gap-1.5">
+                        <span class="text-black font-bold">•</span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* 7. 공식 웹사이트 */}
+              {link && (
+                <div class="pt-1">
+                  <a
+                    href={link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-black border-b border-black pb-0.5 hover:opacity-50 transition"
+                  >
+                    <span>{labels.website}</span>
+                    <FaExternalLinkAlt class="text-[10px]" />
+                  </a>
+                </div>
+              )}
+
+              {/* 8. 게시일 (DOM에 유지, 시각적 숨김) */}
+              {hasDate && (
+                <div class="hidden" aria-hidden="true">
+                  <FaRegClock />
+                  <span>{labels.posted}: {formattedDate}</span>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* [CASE 2] 갤러리가 없을 때: 좌측 컬럼에 '대표 포스터 이미지' 배치 */}
+          {!isGalleryMode && hasImage && (
+            <div class="w-full overflow-hidden border border-gray-100">
               <ImageMod
                 src={image}
-                height={500}
-                width={1200}
-                alt={title}
-                class="w-full rounded"
+                height={800}
+                width={600}
+                alt={plainTitle}
+                class="w-full h-auto object-cover block"
                 format="webp"
               />
             </div>
-          )
-        }
-        <h1 set:html={markdownify(title)} class="h2 mb-4" />
-        <ul class="mb-4">
-          <li class="mr-4 inline-block">
-            <a href={`/authors/${slugify(author)}`}>
-              <FaRegUserCircle className={"mr-2 -mt-1 inline-block"} />
-              {humanize(author)}
-            </a>
-          </li>
-          <li class="mr-4 inline-block">
-            <FaRegFolder className={"mr-2 -mt-1 inline-block"} />
-            {
-              categories.map((category: string, index: number) => (
-                <a href={`/categories/${slugify(category)}`}>
-                  {humanize(category)}
-                  {index !== categories.length - 1 && ","}
-                </a>
-              ))
-            }
-          </li>
-          <li class="mr-4 inline-block">
-            <FaRegClock className={"mr-2 -mt-1 inline-block"} />
-            {dateFormat(date)}
-          </li>
-        </ul>
-        <div class="content mb-10">
-          <Content />
+          )}
+
         </div>
-        <div class="row items-start justify-between">
-          <div class="mb-10 flex items-center lg:col-5 lg:mb-0">
-            <h5 class="mr-3">Tags :</h5>
-            <ul>
-              {
-                tags.map((tag: string) => (
-                  <li class="inline-block">
+      </aside>
+
+      {/* 3-B. 우측 컬럼 (3/4 폭: 갤러리 없으면 개요 정보 + 본문 / 갤러리 있으면 본문 전용) */}
+      <main class="lg:w-3/4 w-full lg:pl-16">
+
+        {/* 갤러리가 없을 때: 우측 본문 상단에 '개요 정보' 배치 */}
+        {!isGalleryMode && (
+          <div class="space-y-4 text-sm mb-12 font-mono pb-8 border-b border-gray-200">
+            {/* 1. 카테고리 */}
+            {(hasCategories || typesList.length > 0) && (
+              <div>
+                <span class="block text-xs uppercase tracking-wider text-gray-400 mb-1">{labels.category}</span>
+                <div class="flex flex-wrap gap-1.5">
+                  {categories.map((cat: any) => (
                     <a
-                      class="m-1 block rounded bg-light px-3 py-1 hover:bg-primary hover:text-white dark:bg-darkmode-light dark:hover:bg-darkmode-primary dark:hover:text-text-dark"
-                      href={`/tags/${slugify(tag)}`}
+                      href={cat.url}
+                      class="text-xs px-2 py-0.5 border border-black text-black font-medium hover:bg-black hover:text-white transition uppercase"
                     >
-                      {humanize(tag)}
+                      {cat.name}
                     </a>
-                  </li>
-                ))
-              }
-            </ul>
+                  ))}
+                  {typesList.map((t: string) => (
+                    <span class="text-xs px-2 py-0.5 bg-gray-100 text-gray-800 font-medium">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* 2. 행사 기간 */}
+            {(startDate || endDate) && (
+              <div>
+                <span class="block text-xs uppercase tracking-wider text-gray-400 mb-0.5">{labels.date}</span>
+                <p class="font-medium text-gray-900">
+                  {formattedStartDate} {formattedEndDate && `~ ${formattedEndDate}`}
+                </p>
+              </div>
+            )}
+
+            {/* 3. 장소 & 지도 링크 */}
+            {venue && (
+              <div>
+                <span class="block text-xs uppercase tracking-wider text-gray-400 mb-0.5">{labels.venue}</span>
+                <div class="flex items-center gap-2">
+                  <p class="font-medium text-gray-900">{venue}</p>
+                  {mapUrl && (
+                    <a
+                      href={mapUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="inline-flex items-center gap-1 text-xs text-black underline underline-offset-2 hover:opacity-60 shrink-0"
+                    >
+                      <FaMapMarkerAlt class="text-[10px]" /> {labels.map}
+                    </a>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* 4. 참여 작가 */}
+            {artistList.length > 0 && (
+              <div>
+                <span class="block text-xs uppercase tracking-wider text-gray-400 mb-0.5">{labels.artist}</span>
+                <p class="font-medium text-gray-900">{artistList.join(", ")}</p>
+              </div>
+            )}
+
+            {/* 5. 주최 */}
+            {organizer && (
+              <div>
+                <span class="block text-xs uppercase tracking-wider text-gray-400 mb-0.5">{labels.organizer}</span>
+                <p class="font-medium text-gray-900">{organizer}</p>
+              </div>
+            )}
+
+            {/* 6. 참고 사항 */}
+            {etcList.length > 0 && (
+              <div>
+                <span class="block text-xs uppercase tracking-wider text-gray-400 mb-1">{labels.note}</span>
+                <ul class="space-y-1 text-xs text-gray-700 whitespace-pre-line font-sans">
+                  {etcList.map((item: string) => (
+                    <li class="flex items-start gap-1.5">
+                      <span class="text-black font-bold">•</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+
+            {/* 7. 공식 웹사이트 */}
+            {link && (
+              <div class="pt-1">
+                <a
+                  href={link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-black border-b border-black pb-0.5 hover:opacity-50 transition"
+                >
+                  <span>{labels.website}</span>
+                  <FaExternalLinkAlt class="text-[10px]" />
+                </a>
+              </div>
+            )}
+
+            {/* 8. 게시일 (DOM에 유지, 시각적 숨김) */}
+            {hasDate && (
+              <div class="hidden" aria-hidden="true">
+                <FaRegClock />
+                <span>{labels.posted}: {formattedDate}</span>
+              </div>
+            )}
           </div>
-          <div class="flex items-center lg:col-4">
-            <h5 class="mr-3">Share :</h5>
-            <Share
-              className="social-icons"
-              title={title}
-              description={description}
-              slug={post.id}
-            />
-          </div>
+        )}
+
+        {/* 아카이브 본문 내용 */}
+        <div class="content leading-relaxed text-base sm:text-lg text-gray-800 space-y-6 max-w-none">
+          {hasContent && <ContentComponent />}
         </div>
-        <Disqus className="mt-20" client:only="react" />
-      </article>
+
+        {/* 태그 목록 (DOM에 유지, 시각적 숨김) */}
+        {hasTags && (
+          <div class="hidden" aria-hidden="true">
+            <span>Tags:</span>
+            {tags.map((tag: any) => (
+              <a href={tag.url}>#{tag.name}</a>
+            ))}
+          </div>
+        )}
+      </main>
+
     </div>
 
-    <!-- Related posts -->
-    <div class="section pb-0">
-      <h2 class="h3 mb-12 text-center">Related Posts</h2>
-      <div class="row justify-center">
-        {
-          similarPosts.map((post) => (
-            <div class="lg:col-4 md:col-6 mb-14">
-              <BlogCard data={post} />
-            </div>
-          ))
-        }
-      </div>
-    </div>
   </div>
 </section>
+
+<!-- Hero Slider Script -->
+<script>
+  function setupHeroSlider() {
+    const slider = document.getElementById('hero-slider');
+    const track = document.getElementById('slider-track');
+    const btnPrev = document.getElementById('btn-prev');
+    const btnNext = document.getElementById('btn-next');
+
+    if (!slider || !track || !btnPrev || !btnNext) return;
+
+    const realTotal = track.children.length - 1;
+    let currentIndex = 0;
+    let autoPlayTimer: any = null;
+    let isAnimating = false;
+
+    function updatePosition(animate = true) {
+      if (!track) return;
+      if (animate) {
+        track.style.transition = 'transform 0.6s cubic-bezier(0.25, 1, 0.5, 1)';
+      } else {
+        track.style.transition = 'none';
+      }
+      track.style.transform = `translate3d(-${currentIndex * 100}%, 0, 0)`;
+    }
+
+    function handleResize() {
+      updatePosition(false);
+    }
+    window.addEventListener('resize', handleResize);
+
+    function goToNextSlide() {
+      if (isAnimating) return;
+      isAnimating = true;
+      currentIndex++;
+      updatePosition(true);
+    }
+
+    function goToPrevSlide() {
+      if (isAnimating) return;
+      isAnimating = true;
+
+      if (currentIndex === 0) {
+        currentIndex = realTotal;
+        updatePosition(false);
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            currentIndex = realTotal - 1;
+            updatePosition(true);
+          });
+        });
+      } else {
+        currentIndex--;
+        updatePosition(true);
+      }
+    }
+
+    track.addEventListener('transitionend', () => {
+      isAnimating = false;
+      if (currentIndex === realTotal) {
+        currentIndex = 0;
+        updatePosition(false);
+      }
+    });
+
+    btnNext.addEventListener('click', () => {
+      goToNextSlide();
+      resetAutoPlay();
+    });
+
+    btnPrev.addEventListener('click', () => {
+      goToPrevSlide();
+      resetAutoPlay();
+    });
+
+    function startAutoPlay() {
+      stopAutoPlay();
+      autoPlayTimer = setInterval(goToNextSlide, 4000);
+    }
+
+    function stopAutoPlay() {
+      if (autoPlayTimer) clearInterval(autoPlayTimer);
+    }
+
+    function resetAutoPlay() {
+      stopAutoPlay();
+      startAutoPlay();
+    }
+
+    slider.addEventListener('mouseenter', stopAutoPlay);
+    slider.addEventListener('mouseleave', startAutoPlay);
+
+    let startX = 0;
+    let endX = 0;
+
+    slider.addEventListener('touchstart', (e) => {
+      stopAutoPlay();
+      startX = e.touches[0].clientX;
+    }, { passive: true });
+
+    slider.addEventListener('touchend', (e) => {
+      endX = e.changedTouches[0].clientX;
+      const diffX = startX - endX;
+      if (Math.abs(diffX) > 40) {
+        if (diffX > 0) goToNextSlide();
+        else goToPrevSlide();
+      }
+      startAutoPlay();
+    }, { passive: true });
+
+    startAutoPlay();
+  }
+
+  document.addEventListener('astro:page-load', setupHeroSlider);
+  setupHeroSlider();
+</script>

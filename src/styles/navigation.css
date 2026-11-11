@@ -4,24 +4,36 @@
 
 /* navbar items */
 .navbar {
+/*
   @apply relative flex flex-wrap items-center justify-between;
+*/
+  @apply flex items-center justify-between; /* 기존 grid나 justify-center가 있다면 justify-between으로 변경 */
 }
 
 .navbar-brand {
-  @apply text-text-dark dark:text-darkmode-text-dark text-xl font-semibold;
+  @apply text-text-dark dark:text-darkmode-text-dark text-xl font-normal;
   image {
     @apply max-h-full max-w-full;
   }
 }
 
 .navbar-nav {
+/*
   @apply text-center lg:text-left;
+*/
+  @apply !ml-auto;
 }
 
 .nav-link {
-  @apply text-text-dark hover:text-primary dark:text-darkmode-text-dark dark:hover:text-darkmode-primary block p-3 cursor-pointer font-semibold transition lg:px-2 lg:py-3;
-}
+  /* 평상시: font-semibold -> font-normal 로 변경 */
+  @apply text-text-dark hover:text-primary dark:text-darkmode-text-dark dark:hover:text-darkmode-primary block p-3 cursor-pointer font-normal transition lg:px-1 lg:py-3;
 
+  /* active 클래스가 붙거나 마우스 호버 시 굵게 처리 */
+  &.active,
+  &:hover {
+    @apply font-semibold;
+  }
+}
 .nav-dropdown {
   @apply mr-0;
 }
@@ -31,17 +43,24 @@
 }
 
 .nav-dropdown-list {
-  @apply bg-body dark:bg-darkmode-body z-10 min-w-[180px] rounded p-4 shadow-sm;
+  /* 다크 블랙 배경 + 테두리선으로 명확한 구별 (라운드/그림자 없음 유지) */
+  @apply bg-gray-900 text-white z-10 min-w-[180px] rounded-none p-4 shadow-none border border-gray-800;
 }
 
 .nav-dropdown-item {
-  @apply [&:not(:last-child)]:mb-2;
+  @apply [&:not(:last-child)]:mb-1;
 }
 
 .nav-dropdown-link {
-  @apply text-text-dark hover:text-primary dark:text-darkmode-text dark:hover:text-darkmode-primary block py-1 font-semibold transition;
-}
+  /* 기본 글자색: 밝은 회색(text-gray-300) / 일반 두께(font-normal) */
+  @apply text-gray-100 hover:text-white block py-1 px-1 text-sm font-normal transition;
 
+  /* 활성화(active) 또는 호버 시: 완전한 흰색 + 미세한 굵기 강조 */
+  &.active,
+  &:hover {
+    @apply font-medium text-white;
+  }
+}
 /* theme-switcher */
 .theme-switcher {
   @apply inline-flex;

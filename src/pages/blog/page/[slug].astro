@@ -12,6 +12,8 @@ import PostSidebar from "@/partials/PostSidebar.astro";
 const BLOG_FOLDER = "blog";
 
 const { slug } = Astro.params;
+
+// 1. 한국어 블로그 인덱스 데이터 가져오기 (-index.md)
 const postIndex = await getListPage(BLOG_FOLDER, "-index");
 
 const buildDrafts = process.argv.includes("--buildDrafts");
@@ -19,12 +21,28 @@ if (!buildDrafts && postIndex.data.draft) {
   return Astro.redirect("/404");
 }
 
-const posts = await getSinglePage(BLOG_FOLDER);
+// 2. 전체 포스트 중 한국어 포스트만 필터링 및 확장자 정제
+const allPosts = await getSinglePage(BLOG_FOLDER);
+const krPosts = allPosts.filter((post) => {
+  const id = post.id || "";
+  const slug = post.slug || "";
+  return !id.startsWith("en/") && !slug.startsWith("en/");
+});
+
+const formattedPosts = krPosts.map((post) => {
+  const rawSlug = post.slug || post.id;
+  const cleanSlug = rawSlug.replace(/\.(md|mdx)$/, "");
+  return {
+    ...post,
+    slug: cleanSlug,
+  };
+});
+
 const allCategories = await getAllTaxonomy(BLOG_FOLDER, "categories");
 const categories = await getTaxonomy(BLOG_FOLDER, "categories");
 const tags = await getTaxonomy(BLOG_FOLDER, "tags");
-const sortedPosts = sortByDate(posts);
-const totalPages = Math.ceil(posts.length / config.settings.pagination);
+const sortedPosts = sortByDate(formattedPosts);
+const totalPages = Math.ceil(formattedPosts.length / config.settings.pagination);
 const currentPage = slug && !isNaN(Number(slug)) ? Number(slug) : 1;
 const indexOfLastPost = currentPage * config.settings.pagination;
 const indexOfFirstPost = indexOfLastPost - config.settings.pagination;
@@ -33,7 +51,15 @@ const currentPosts = sortedPosts.slice(indexOfFirstPost, indexOfLastPost);
 export async function getStaticPaths() {
   const BLOG_FOLDER = "blog";
   const posts = await getSinglePage(BLOG_FOLDER);
-  const totalPages = Math.ceil(posts.length / config.settings.pagination);
+
+  // 한국어 포스트 기준으로만 총 페이지 수 계산
+  const krPosts = posts.filter((post) => {
+    const id = post.id || "";
+    const slug = post.slug || "";
+    return !id.startsWith("en/") && !slug.startsWith("en/");
+  });
+
+  const totalPages = Math.ceil(krPosts.length / config.settings.pagination);
   const paths = [];
 
   for (let i = 1; i < totalPages; i++) {

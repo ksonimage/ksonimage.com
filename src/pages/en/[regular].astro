@@ -1,0 +1,74 @@
+---
+import Base from "@/layouts/Base.astro";
+import PageWorks from "@/layouts/PageWorks.astro";
+import { getSinglePage } from "@/lib/contentParser.astro";
+import { render } from "astro:content";
+
+export async function getStaticPaths() {
+  const COLLECTION_FOLDER = "pages";
+  const allPages = await getSinglePage(COLLECTION_FOLDER);
+
+  // 1. 영문 페이지 포스트만 추출 ('en/'으로 시작, -index 메타 파일 제외)
+  const enPages = allPages.filter((page) => {
+    const id = page.id || "";
+    const slug = page.slug || "";
+    const isEn = id.startsWith("en/") || slug.startsWith("en/");
+    const isIndex = id.includes("-index") || slug.includes("-index");
+    return isEn && !isIndex;
+  });
+
+  // 2. 'en/' 접두사 및 확장자 제거 후 /en/[regular] 파라미터 매핑
+  const paths = enPages.map((page) => {
+    const rawPath = page.slug || page.id;
+    const cleanSlug = rawPath
+      .replace(/^en\//, "")
+      .replace(/\.(md|mdx)$/, "")
+      .replace(/\/$/, "");
+
+    return {
+      params: {
+        regular: cleanSlug,
+      },
+      props: { page },
+    };
+  });
+
+  return paths;
+}
+
+const { page } = Astro.props;
+const { title, meta_title, info, image, layout, vimeoId, gallery } = page.data;
+
+const { Content } = await render(page);
+
+const isWorks =
+  layout === "works" ||
+  Boolean(vimeoId) ||
+  (Array.isArray(gallery) && gallery.length > 0) ||
+  typeof gallery === "string";
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={info}
+  image={image}
+>
+  {/* 상단 전체 폭 렌더링 제거 유지 */}
+
+  {isWorks ? (
+    <PageWorks data={page.data} Content={Content} />
+  ) : (
+    <section class="section-sm">
+      <div class="container">
+        <div class="row justify-center">
+          <div class="lg:col-10">
+            <div class="content">
+              <Content />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

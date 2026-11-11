@@ -2,6 +2,11 @@
 import config from "@/config/config.json";
 import ImageMod from "./ImageMod.astro";
 
+// 현재 접속 경로 확인 및 언어별 홈 URL 설정
+const { pathname } = Astro.url;
+const isEn = pathname === "/en" || pathname.startsWith("/en/");
+const homeUrl = isEn ? "/en" : "/";
+
 const { src, srcDarkmode }: { src?: string; srcDarkmode?: string } =
   Astro.props;
 const {
@@ -23,7 +28,7 @@ const {
 const { theme_switcher }: { theme_switcher: boolean } = config.settings;
 ---
 
-<a href="/" class="navbar-brand inline-block">
+<a href={homeUrl} class="navbar-brand inline-block">
   {
     src || srcDarkmode || logo || logo_darkmode ? (
       <>

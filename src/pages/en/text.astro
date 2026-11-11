@@ -1,0 +1,101 @@
+---
+import ImageMod from "@/components/ImageMod.astro";
+import Base from "@/layouts/Base.astro";
+import { getListPage } from "@/lib/contentParser.astro";
+import { markdownify } from "@/lib/utils/textConverter";
+import { render } from "astro:content";
+import PageHeader from "@/partials/PageHeader.astro";
+
+const pageIndex = await getListPage("text", "en/-index");
+const { Content } = await render(pageIndex);
+const { title, description, meta_title, image } = pageIndex.data;
+
+const buildDrafts = process.argv.includes("--buildDrafts");
+if (!buildDrafts && pageIndex.data.draft) {
+  return Astro.redirect("/404");
+}
+---
+
+<Base
+  title={title}
+  meta_title={meta_title}
+  description={description}
+  image={image}
+>
+  <PageHeader title={title} />
+
+  <section class="section-sm">
+    <div class="container">
+      <div class="row justify-left">
+        <div class="w-full md:col-10 lg:col-8">
+          {
+            image && (
+              <ImageMod
+                class="mx-auto mb-6 rounded w-full"
+                src={image}
+                width={1200}
+                height={600}
+                alt={title}
+                format="webp"
+              />
+            )
+          }
+
+          {/* w-full 및 text-content 영역 적용 */}
+          <div class="text-content w-full font-mono text-sm leading-relaxed">
+            <Content />
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
+
+{/* 💡 폭 100%, 리스트 정렬, 그리고 링크 언더라인 스타일 강제 지정 */}
+<style is:global>
+  .text-content {
+    width: 100% !important;
+  }
+
+  /* 본문 내 링크(a 태그) 언더라인 설정 */
+  .text-content a {
+    text-decoration: underline !important;
+    text-underline-offset: 4px !important;
+    text-decoration-thickness: 1px !important;
+    transition: opacity 0.2s ease !important;
+  }
+
+  .text-content a:hover {
+    opacity: 0.6 !important;
+  }
+
+  .text-content ul {
+    width: 100% !important;
+    list-style-type: disc !important;
+    list-style-position: outside !important;
+    padding-left: 1.5rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+    box-sizing: border-box !important;
+  }
+
+  .text-content ol {
+    width: 100% !important;
+    list-style-type: decimal !important;
+    list-style-position: outside !important;
+    padding-left: 1.5rem !important;
+    margin-top: 1rem !important;
+    margin-bottom: 1rem !important;
+    box-sizing: border-box !important;
+  }
+
+  .text-content li {
+    width: 100% !important;
+    display: list-item !important;
+    padding-left: 0.25rem !important;
+    margin-bottom: 0.5rem !important;
+    box-sizing: border-box !important;
+  }
+</style>
+

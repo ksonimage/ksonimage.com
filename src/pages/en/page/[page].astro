@@ -1,0 +1,70 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import BlogList from "@/components/BlogList.astro";
+import Pagination from "@/components/Pagination.astro";
+
+export async function getStaticPaths() {
+  const BLOG_FOLDER = "blog";
+  const POSTS_PER_PAGE = 7;
+
+  const allPosts = await getSinglePage(BLOG_FOLDER);
+
+  // 💡 영문 포스트만 필터링 (-index 제외)
+  const enPosts = allPosts.filter((post) => {
+    const id = post.id || "";
+    const slug = post.slug || "";
+    const isEn = id.startsWith("en/") || slug.startsWith("en/");
+    const isIndex = id.includes("-index") || slug.includes("-index");
+
+    return isEn && !isIndex;
+  });
+
+  const formattedPosts = enPosts.map((post) => {
+    const rawSlug = post.slug || post.id;
+    const cleanSlug = rawSlug.replace(/\.(md|mdx)$/, "");
+    return {
+      ...post,
+      slug: cleanSlug,
+    };
+  });
+
+  const sortedPosts = sortByDate(formattedPosts);
+  const totalPages = Math.ceil(sortedPosts.length / POSTS_PER_PAGE);
+
+  // 2페이지부터 동적 파라미터 생성 (1페이지는 /en/ 이 담당)
+  const paths = [];
+  for (let i = 2; i <= totalPages; i++) {
+    const start = (i - 1) * POSTS_PER_PAGE;
+    const end = start + POSTS_PER_PAGE;
+
+    paths.push({
+      params: { page: i.toString() },
+      props: {
+        currentPosts: sortedPosts.slice(start, end),
+        totalPages,
+        currentPage: i,
+      },
+    });
+  }
+
+  return paths;
+}
+
+const { currentPosts, totalPages, currentPage } = Astro.props;
+---
+
+<Base title={`Page ${currentPage} - Home`}>
+  <div class="w-full px-0 pt-36">
+    {/* 영문 포스트 목록 */}
+    <BlogList posts={currentPosts} />
+
+    {/* 페이지네이션 (영문 전용 section="en" 전달) */}
+    {totalPages > 1 && (
+      <div class="mt-8 mb-16 flex justify-center">
+        <Pagination section="en" currentPage={currentPage} totalPages={totalPages} />
+      </div>
+    )}
+  </div>
+</Base>

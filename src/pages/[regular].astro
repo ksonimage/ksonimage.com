@@ -1,45 +1,60 @@
 ---
 import Base from "@/layouts/Base.astro";
+import PageWorks from "@/layouts/PageWorks.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
-import PageHeader from "@/partials/PageHeader.astro";
 import { render } from "astro:content";
 
-// get static paths for all pages
 export async function getStaticPaths() {
   const COLLECTION_FOLDER = "pages";
+  const allPages = await getSinglePage(COLLECTION_FOLDER);
 
-  const pages = await getSinglePage(COLLECTION_FOLDER);
+  const koPages = allPages.filter(
+    (page) => !page.id.startsWith("en/") && !page.id.includes("-index")
+  );
 
-  const paths = pages.map((page) => ({
+  const paths = koPages.map((page) => ({
     params: {
-      regular: page.id,
+      regular: page.id.replace(/\.(md|mdx)$/, ""),
     },
     props: { page },
   }));
+
   return paths;
 }
 
 const { page } = Astro.props;
-const { title, meta_title, description, image } = page.data;
+const { title, meta_title, info, image, layout, vimeoId, gallery } = page.data;
+
 const { Content } = await render(page);
+
+const isWorks =
+  layout === "works" ||
+  Boolean(vimeoId) ||
+  (Array.isArray(gallery) && gallery.length > 0) ||
+  typeof gallery === "string";
 ---
 
 <Base
   title={title}
   meta_title={meta_title}
-  description={description}
+  description={info}
   image={image}
 >
-  <PageHeader title={title} />
-  <section class="section-sm">
-    <div class="container">
-      <div class="row justify-center">
-        <div class="lg:col-10">
-          <div class="content">
-            <Content />
+  <!-- 상단 전체 폭 렌더링 제거 -->
+
+  {isWorks ? (
+    <PageWorks data={page.data} Content={Content} />
+  ) : (
+    <section class="section-sm">
+      <div class="container">
+        <div class="row justify-center">
+          <div class="lg:col-10">
+            <div class="content">
+              <Content />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 </Base>

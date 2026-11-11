@@ -31,11 +31,12 @@ const { footer }: { footer: { name: string; url: string }[] } = menu;
       </div>
     </div>
   </div>
-  <div class="border-t border-border py-7 dark:border-darkmode-border">
-    <div
-      class="container text-center text-text-light dark:text-darkmode-text-light"
+<div class="py-7 dark:border-darkmode-border bg-white dark:bg-darkmode-body">
+  <div
+      class="container text-left text-text-dark dark:text-darkmode-text"
     >
       <p set:html={markdownify(config.params.copyright)} />
     </div>
   </div>
 </footer>
+

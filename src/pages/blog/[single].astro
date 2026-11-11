@@ -7,17 +7,53 @@ export async function getStaticPaths() {
   const BLOG_FOLDER = "blog";
   const posts = await getSinglePage(BLOG_FOLDER);
 
-  const paths = posts.map((post) => ({
-    params: {
-      single: post.id,
-    },
-    props: { post },
-  }));
-  return paths;
+  // 1. 한글 포스트만 추출 (en/ 시작 및 -index 메타 파일 제외)
+  const krPosts = posts.filter((post) => {
+    const id = post.id || "";
+    const slug = post.slug || "";
+    const isEn = id.startsWith("en/") || slug.startsWith("en/");
+    const isIndex = id.includes("-index") || slug.includes("-index");
+    return !isEn && !isIndex;
+  });
+
+  // 2. 날짜 최신순 정렬 (과거 -> 최신 또는 최신 -> 과거 기준에 맞춰 정렬)
+  const sortedPosts = krPosts.sort(
+    (a, b) => new Date(b.data.date).valueOf() - new Date(a.data.date).valueOf()
+  );
+
+  // 3. 이전/다음 포스트 정보 추출하여 props로 전달
+  return sortedPosts.map((post, index) => {
+    const rawPath = post.slug || post.id;
+    const cleanSlug = rawPath.replace(/\.(md|mdx)$/, "").replace(/\/$/, "");
+
+    // 최신순(내림차순) 정렬 기준:
+    // nextPost: 더 최신 글 (index - 1)
+    // prevPost: 더 과거 글 (index + 1)
+    const nextPost = sortedPosts[index - 1] || null;
+    const prevPost = sortedPosts[index + 1] || null;
+
+    const formatPostProp = (p) => {
+      if (!p) return null;
+      const path = p.slug || p.id;
+      return {
+        title: p.data.title,
+        slug: path.replace(/\.(md|mdx)$/, "").replace(/\/$/, ""),
+      };
+    };
+
+    return {
+      params: { single: cleanSlug },
+      props: {
+        post: { ...post, slug: cleanSlug },
+        prevPost: formatPostProp(prevPost),
+        nextPost: formatPostProp(nextPost),
+      },
+    };
+  });
 }
 
-const { post } = Astro.props;
-const { title, meta_title, description, image } = post.data;
+const { post, prevPost, nextPost } = Astro.props;
+const { title, meta_title, description, image } = post.data || {};
 ---
 
 <Base
@@ -27,4 +63,45 @@ const { title, meta_title, description, image } = post.data;
   image={image}
 >
   <PostSingle post={post} />
+
+  <!-- 💡 이전/다음 포스트 네비게이션 화살표 -->
+  <div class="container mx-auto my-12 border-t border-border pt-8 px-4">
+    <div class="flex justify-between items-center gap-4">
+      {/* 이전 글 (과거 글) */}
+      {
+        prevPost ? (
+          <a
+            href={`/blog/${prevPost.slug}`}
+            class="flex items-center gap-2 text-sm text-text hover:text-primary transition-colors group max-w-[45%]"
+          >
+            <span class="text-xl group-hover:-translate-x-1 transition-transform">←</span>
+            <div class="flex flex-col text-left">
+              <span class="text-xs text-text-light opacity-60">이전 포스트</span>
+              <span class="font-medium truncate">{prevPost.title}</span>
+            </div>
+          </a>
+        ) : (
+          <div />
+        )
+      }
+
+      {/* 다음 글 (최신 글) */}
+      {
+        nextPost ? (
+          <a
+            href={`/blog/${nextPost.slug}`}
+            class="flex items-center gap-2 text-sm text-text hover:text-primary transition-colors group max-w-[45%] ml-auto text-right"
+          >
+            <div class="flex flex-col text-right">
+              <span class="text-xs text-text-light opacity-60">다음 포스트</span>
+              <span class="font-medium truncate">{nextPost.title}</span>
+            </div>
+            <span class="text-xl group-hover:translate-x-1 transition-transform">→</span>
+          </a>
+        ) : (
+          <div />
+        )
+      }
+    </div>
+  </div>
 </Base>

@@ -1,0 +1,99 @@
+---
+// 같은 디렉토리(/src/layouts/components/) 내의 Pagination.astro를 불러옵니다.
+import Pagination from "./Pagination.astro";
+
+// 1. index.astro / blog/index.astro 등에서 넘겨받은 posts 및 page 객체 추출
+const { posts = [], page } = Astro.props;
+
+// 현재 접속 경로 확인 (영문 페이지 여부 판단)
+const { pathname } = Astro.url;
+const isEnPage = pathname === "/en" || pathname.startsWith("/en/");
+
+// 날짜 포맷 함수 (YYYY-MM-DD)
+const formatDate = (dateString: string | Date) => {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return String(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+---
+
+<section class="text-gray-900 body-font overflow-hidden w-full mr-auto">
+  <div class="container mx-auto px-0">
+
+      {posts.map((post: any) => {
+        const postData = post.data || {};
+        const { title, date, startDate, endDate, venue } = postData;
+
+        // slug/id 정제
+        const rawSlug = post.slug || post.id || "";
+        const cleanSlug = String(rawSlug)
+          .replace(/^en\//, "")
+          .replace(/^blog\//, "")
+          .replace(/\.(md|mdx)$/, "")
+          .replace(/\/$/, "");
+
+        // 언어 환경에 맞춘 URL 생성
+        const postUrl = isEnPage || String(rawSlug).startsWith("en/")
+          ? `/en/blog/${cleanSlug}`
+          : `/blog/${cleanSlug}`;
+
+        const formattedDate = formatDate(date);
+        const formattedStartDate = formatDate(startDate);
+        const formattedEndDate = formatDate(endDate);
+        const hasPeriod = Boolean(formattedStartDate || formattedEndDate);
+
+        return (
+          <div class="py-3 px-5 group hover:bg-gray-50/80 transition-colors duration-150">
+            <a
+              href={postUrl}
+              class="flex flex-col gap-1 w-full font-mono text-gray-900"
+            >
+              {/* 1단 (상단): 게시 날짜 */}
+              <div class="text-[11px] md:text-xs text-gray-400 font-normal select-none tracking-tight">
+                {formattedDate}
+              </div>
+
+              {/* 2단 (중간): 포스트 제목 */}
+              <div class="font-semibold text-gray-900 uppercase group-hover:underline underline-offset-4 text-base md:text-lg leading-snug my-0.5">
+                {title}
+              </div>
+
+              {/* 3단 (하단): 장소 · 기간 (자연스럽게 이어붙임) */}
+              <div class="flex items-center gap-2 text-xs md:text-sm font-normal pt-0.5 flex-wrap">
+                {venue && (
+                  <span class="text-gray-600 truncate">
+                    {venue}
+                  </span>
+                )}
+
+                {venue && hasPeriod && (
+                  <span class="text-red-500 font-bold text-xs select-none">•</span>
+                )}
+
+                {hasPeriod && (
+                  <span class="text-gray-600 text-xs font-normal truncate">
+                    {formattedStartDate}{formattedEndDate && ` ~ ${formattedEndDate}`}
+                  </span>
+                )}
+              </div>
+            </a>
+          </div>
+        );
+      })}
+
+
+    {/* 3. Pagination 컴포넌트 */}
+    {page && (
+      <div class="mt-8">
+        <Pagination section={isEnPage ? "en/blog" : "blog"} currentPage={page.currentPage} totalPages={page.lastPage} />
+      </div>
+    )}
+  </div>
+</section>
+
+
+

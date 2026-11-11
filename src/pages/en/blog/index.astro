@@ -1,0 +1,367 @@
+---
+import Base from "@/layouts/Base.astro";
+import { getListPage, getSinglePage } from "@/lib/contentParser.astro";
+import { sortByDate } from "@/lib/utils/sortFunctions";
+import PageHeader from "@/partials/PageHeader.astro";
+
+const BLOG_FOLDER = "blog";
+
+// 1. 영문 blog 인덱스 데이터 가져오기 (없을 경우 fallback)
+let postIndex: any = null;
+try {
+  postIndex = await getListPage(BLOG_FOLDER, "en/-index");
+} catch (e) {
+  postIndex = null;
+}
+
+const title = postIndex?.data?.title || "Archive";
+const buildDrafts = process.argv.includes("--buildDrafts");
+if (!buildDrafts && postIndex?.data?.draft) {
+  return Astro.redirect("/404");
+}
+
+// 2. 전체 포스트 중 영문 포스트만 필터링 ('en/'으로 시작하고 -index 메타 파일 제외)
+const allPosts = await getSinglePage(BLOG_FOLDER);
+const enPosts = allPosts.filter((post) => {
+  const id = post.id || "";
+  const slug = post.slug || "";
+  const isEn = id.startsWith("en/") || slug.startsWith("en/");
+  const isIndex = id.includes("-index") || slug.includes("-index");
+
+  return isEn && !isIndex;
+});
+
+// 3. slug 정제 ('en/' 접두사 및 확장자 제거) 및 연도(Year) 추출
+const formattedPosts = enPosts.map((post) => {
+  const rawSlug = post.slug || post.id;
+  const cleanSlug = rawSlug.replace(/^en\//, "").replace(/\.(md|mdx)$/, "");
+
+  const postDate = new Date(post.data.date || post.data.pubDate || post.data.startDate);
+  const year = !isNaN(postDate.getTime()) ? String(postDate.getFullYear()) : "";
+
+  return {
+    ...post,
+    slug: cleanSlug,
+    year,
+  };
+});
+
+// 4. 날짜순 정렬
+const sortedPosts = sortByDate(formattedPosts);
+
+// 5. 영문 카테고리 정렬 규칙 ("Exhibition" -> "Screening" -> "News" -> 나머지 알파벳순)
+const PRIORITY_ORDER = ["Exhibition", "Screening", "News", "exhibition", "screening", "news"];
+
+const rawCategories = Array.from(
+  new Set(sortedPosts.flatMap((p) => p.data.categories || []))
+).filter(Boolean).sort((a, b) => {
+  const idxA = PRIORITY_ORDER.indexOf(a);
+  const idxB = PRIORITY_ORDER.indexOf(b);
+
+  if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+  if (idxA !== -1) return -1;
+  if (idxB !== -1) return 1;
+  return a.localeCompare(b, "en");
+});
+
+const categories = ["ALL", ...rawCategories];
+
+// 6. 연도 목록 추출 (내림차순 정렬)
+const years = ["ALL", ...Array.from(new Set(sortedPosts.map((p) => p.year))).filter(Boolean).sort((a, b) => b.localeCompare(a))];
+
+// 날짜 포맷 함수
+const formatDate = (dateString: string | Date) => {
+  if (!dateString) return "";
+  const date = new Date(dateString);
+  if (isNaN(date.getTime())) return String(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+};
+
+// 미니멀 갤러리 톤 컬러 팔레트
+const PLACEHOLDER_COLORS = [
+  "bg-zinc-800",
+  "bg-stone-700",
+  "bg-slate-700",
+  "bg-neutral-800",
+  "bg-gray-800",
+  "bg-rose-950",
+  "bg-emerald-950",
+  "bg-indigo-950",
+];
+
+// 한 페이지당 노출할 카드 수
+const POSTS_PER_PAGE = 9;
+---
+
+<Base
+  title={title}
+  meta_title={postIndex?.data?.meta_title}
+  image={postIndex?.data?.image}
+  description={postIndex?.data?.description}
+>
+  <PageHeader title={title} />
+
+  <section class="section pt-6">
+    <div class="container mx-auto px-4 md:px-6">
+
+      {/* ================= 1행: 검색 및 필터 영역 (카테고리 & 연도) ================= */}
+      <div class="mb-10 pb-6 border-b border-gray-200 flex flex-col md:flex-row gap-6 md:items-center justify-between font-mono">
+
+        {/* 1-1. 카테고리 필터 */}
+        <div class="flex items-center gap-2 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
+          {
+            categories.map((cat, idx) => (
+              <button
+                type="button"
+                data-filter-category={cat}
+                class={`archive-cat-btn px-3 py-1 rounded-full text-xs transition-all cursor-pointer whitespace-nowrap border ${
+                  idx === 0
+                    ? "bg-gray-900 text-white border-gray-900 font-semibold"
+                    : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+                }`}
+              >
+                {cat}
+              </button>
+            ))
+          }
+        </div>
+
+        {/* 1-2. 연도 필터 */}
+        <div class="flex items-center gap-2 shrink-0">
+          <select
+            id="year-select"
+            data-filter-year
+            class="bg-white border border-gray-200 text-gray-800 text-xs rounded-md px-3 py-1.5 font-mono focus:outline-none focus:border-gray-900 cursor-pointer"
+          >
+            {
+              years.map((y) => (
+                <option value={y}>{y === "ALL" ? "YEARS" : y}</option>
+              ))
+            }
+          </select>
+        </div>
+
+      </div>
+
+      {/* ================= 2행: 결과 카드 그리드 영역 ================= */}
+      <div id="archive-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" data-per-page={POSTS_PER_PAGE}>
+        {
+          sortedPosts.map((post, idx) => {
+            const { title, date, startDate, endDate, venue, image, categories = [] } = post.data;
+            const formattedDate = formatDate(date);
+            const formattedStartDate = formatDate(startDate);
+            const formattedEndDate = formatDate(endDate);
+            const hasPeriod = Boolean(formattedStartDate || formattedEndDate);
+
+            const catAttr = categories.join(",");
+            const yearAttr = post.year;
+
+            const randomBgColor = PLACEHOLDER_COLORS[idx % PLACEHOLDER_COLORS.length];
+
+            return (
+              <article
+                class="archive-card group bg-white border border-gray-100 hover:border-gray-300 rounded-lg overflow-hidden transition-all duration-200 flex flex-col justify-between"
+                data-category={catAttr}
+                data-year={yearAttr}
+              >
+                {/* 영문 상세 페이지 경로: /en/blog/{slug} */}
+                <a href={`/en/blog/${post.slug}`} class="block flex-1 flex flex-col">
+
+                  {/* 상단 썸네일 영역 */}
+                  {image ? (
+                    <div class="aspect-video w-full overflow-hidden bg-gray-100 border-b border-gray-100">
+                      <img
+                        src={image}
+                        alt={title}
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : (
+                    <div class={`aspect-video w-full ${randomBgColor} p-5 flex items-center justify-center text-center border-b border-gray-100 transition-opacity duration-300 group-hover:opacity-95`}>
+                      <span class="font-mono font-bold text-white uppercase text-base md:text-lg leading-tight line-clamp-3 tracking-tight">
+                        {title}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* 하단 정보 영역 */}
+                  <div class="p-5 flex flex-col flex-1 justify-between gap-3 font-mono">
+                    <div>
+                      {/* 등록일 */}
+                      <div class="text-[11px] text-gray-400 font-normal select-none mb-1">
+                        {formattedDate}
+                      </div>
+
+                      {/* 리스트형 제목 */}
+                      <h3 class="font-semibold text-gray-900 uppercase text-base md:text-lg leading-snug group-hover:underline underline-offset-4 line-clamp-2">
+                        {title}
+                      </h3>
+                    </div>
+
+                    {/* 하단 메타 데이터: · - 장소 - · - 날짜 - · */}
+                    <div class="flex items-center gap-1.5 text-xs text-gray-500 font-normal pt-2 border-t border-gray-50 flex-wrap">
+                      <span class="text-red-500 font-bold text-xs select-none">·</span>
+
+                      {venue ? (
+                        <span class="text-gray-600 truncate max-w-[140px]">{venue}</span>
+                      ) : (
+                        <span class="text-gray-400 italic">TBD</span>
+                      )}
+
+                      <span class="text-red-500 font-bold text-xs select-none">·</span>
+
+                      {hasPeriod ? (
+                        <span class="text-gray-400 text-xs truncate">
+                          {formattedStartDate}{formattedEndDate && ` ~ ${formattedEndDate}`}
+                        </span>
+                      ) : (
+                        <span class="text-gray-400 text-xs">-</span>
+                      )}
+
+                      <span class="text-red-500 font-bold text-xs select-none">·</span>
+                    </div>
+
+                  </div>
+                </a>
+              </article>
+            );
+          })
+        }
+      </div>
+
+      {/* ================= 3행: 동적 페이지네이션 영역 ================= */}
+      <div id="pagination-container" class="mt-12 flex justify-center items-center gap-2 font-mono text-xs"></div>
+
+    </div>
+  </section>
+</Base>
+
+<!-- 클라이언트 사이드 필터 & 페이지네이션 Script -->
+<script>
+  document.addEventListener("astro:page-load", () => {
+    const catButtons = document.querySelectorAll<HTMLButtonElement>("[data-filter-category]");
+    const yearSelect = document.querySelector<HTMLSelectElement>("[data-filter-year]");
+    const cards = Array.from(document.querySelectorAll<HTMLElement>(".archive-card"));
+    const gridEl = document.getElementById("archive-grid");
+    const paginationContainer = document.getElementById("pagination-container");
+
+    const itemsPerPage = parseInt(gridEl?.dataset.perPage || "9", 10);
+
+    let currentCategory = "ALL";
+    let currentYear = "ALL";
+    let currentPage = 1;
+
+    function render() {
+      const visibleCards = cards.filter((card) => {
+        const cardCats = (card.dataset.category || "").split(",");
+        const cardYear = card.dataset.year || "";
+
+        const matchCat = currentCategory === "ALL" || cardCats.includes(currentCategory);
+        const matchYear = currentYear === "ALL" || cardYear === currentYear;
+
+        return matchCat && matchYear;
+      });
+
+      const totalPages = Math.ceil(visibleCards.length / itemsPerPage) || 1;
+      if (currentPage > totalPages) currentPage = 1;
+
+      const startIndex = (currentPage - 1) * itemsPerPage;
+      const endIndex = startIndex + itemsPerPage;
+
+      cards.forEach((card) => card.classList.add("hidden"));
+      visibleCards.slice(startIndex, endIndex).forEach((card) => card.classList.remove("hidden"));
+
+      renderPagination(totalPages);
+    }
+
+    function renderPagination(totalPages: number) {
+      if (!paginationContainer) return;
+      paginationContainer.innerHTML = "";
+
+      if (totalPages <= 1) return;
+
+      const prevBtn = document.createElement("button");
+      prevBtn.className = `px-3 py-1.5 rounded border transition-colors ${
+        currentPage === 1
+          ? "border-gray-200 text-gray-300 cursor-not-allowed"
+          : "border-gray-200 text-gray-700 hover:border-gray-900 cursor-pointer"
+      }`;
+      prevBtn.innerText = "PREV";
+      prevBtn.disabled = currentPage === 1;
+      prevBtn.addEventListener("click", () => {
+        if (currentPage > 1) {
+          currentPage--;
+          render();
+          scrollToGridTop();
+        }
+      });
+      paginationContainer.appendChild(prevBtn);
+
+      for (let i = 1; i <= totalPages; i++) {
+        const pageBtn = document.createElement("button");
+        pageBtn.className = `px-3 py-1.5 rounded border font-semibold transition-colors cursor-pointer ${
+          i === currentPage
+            ? "bg-gray-900 text-white border-gray-900"
+            : "bg-white text-gray-600 border-gray-200 hover:border-gray-400"
+        }`;
+        pageBtn.innerText = String(i);
+        pageBtn.addEventListener("click", () => {
+          currentPage = i;
+          render();
+          scrollToGridTop();
+        });
+        paginationContainer.appendChild(pageBtn);
+      }
+
+      const nextBtn = document.createElement("button");
+      nextBtn.className = `px-3 py-1.5 rounded border transition-colors ${
+        currentPage === totalPages
+          ? "border-gray-200 text-gray-300 cursor-not-allowed"
+          : "border-gray-200 text-gray-700 hover:border-gray-900 cursor-pointer"
+      }`;
+      nextBtn.innerText = "NEXT";
+      nextBtn.disabled = currentPage === totalPages;
+      nextBtn.addEventListener("click", () => {
+        if (currentPage < totalPages) {
+          currentPage++;
+          render();
+          scrollToGridTop();
+        }
+      });
+      paginationContainer.appendChild(nextBtn);
+    }
+
+    function scrollToGridTop() {
+      gridEl?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    catButtons.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        catButtons.forEach((b) => {
+          b.classList.remove("bg-gray-900", "text-white", "border-gray-900", "font-semibold");
+          b.classList.add("bg-white", "text-gray-600", "border-gray-200");
+        });
+        btn.classList.remove("bg-white", "text-gray-600", "border-gray-200");
+        btn.classList.add("bg-gray-900", "text-white", "border-gray-900", "font-semibold");
+
+        currentCategory = btn.dataset.filterCategory || "ALL";
+        currentPage = 1;
+        render();
+      });
+    });
+
+    if (yearSelect) {
+      yearSelect.addEventListener("change", (e) => {
+        currentYear = (e.target as HTMLSelectElement).value;
+        currentPage = 1;
+        render();
+      });
+    }
+
+    render();
+  });
+</script>
