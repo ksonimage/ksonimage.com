@@ -18,10 +18,10 @@ venue: "부산국제영화제"
 organizer: ""
 startDate: 2004-10-7
 endDate: 2004-10-15
-link: "https:/www.biff.kr/kor/html/archive/arc\_history.asp?pyear=2004&page\_name=award"
+link: "https://www.biff.kr/kor/html/archive/arc_history.asp?pyear=2004&page_name=award"
 mapUrl: ""
 etc:
-  - "참여작품: [제3언어]"
+  - "참여작품: 제3언어"
   - "상영부문: 와이드앵글"
 image: "/images/posts/2004-biff.jpg"
 gallery: []

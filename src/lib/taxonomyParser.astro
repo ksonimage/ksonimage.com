@@ -7,12 +7,18 @@ export const getTaxonomy = async (collection: any, name: string) => {
   const singlePages = await getSinglePage(collection);
   const taxonomyPages = singlePages.map((page: any) => page.data[name]);
   let taxonomies: string[] = [];
+
   for (let i = 0; i < taxonomyPages.length; i++) {
     const categoryArray = taxonomyPages[i];
+
+    // 카테고리가 없거나 배열이 아니면 건너뛰기
+    if (!Array.isArray(categoryArray)) continue;
+
     for (let j = 0; j < categoryArray.length; j++) {
       taxonomies.push(slugify(categoryArray[j]));
     }
   }
+
   const taxonomy = [...new Set(taxonomies)];
   return taxonomy;
 };
@@ -22,12 +28,18 @@ export const getAllTaxonomy = async (collection: any, name: string) => {
   const singlePages = await getSinglePage(collection);
   const taxonomyPages = singlePages.map((page: any) => page.data[name]);
   let taxonomies: string[] = [];
+
   for (let i = 0; i < taxonomyPages.length; i++) {
     const categoryArray = taxonomyPages[i];
+
+    // 카테고리가 없거나 배열이 아니면 건너뛰기
+    if (!Array.isArray(categoryArray)) continue;
+
     for (let j = 0; j < categoryArray.length; j++) {
       taxonomies.push(slugify(categoryArray[j]));
     }
   }
+
   return taxonomies;
 };
 ---

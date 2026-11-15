@@ -20,11 +20,10 @@ venue: "Busan International Film Festival"
 organizer: ""
 startDate: 2004-10-7
 endDate: 2004-10-15
-link: "https:/www.biff.kr/kor/html/archive/arc\_history.asp?pyear=2004&page\_name=award"
+link: "https://www.biff.kr/kor/html/archive/arc_history.asp?pyear=2004&page_name=award"
 mapUrl: ""
-etc: ""
+etc: []
 image: "/images/posts/2004-biff.jpg"
 gallery: []
 draft: false
 ---
-

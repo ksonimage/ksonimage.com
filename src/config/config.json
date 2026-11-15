@@ -30,7 +30,7 @@
 
   "params": {
     "enable" : true,
-    "contact_form_action": "#",
+    "contact_form_action": "https://formspree.io/f/xkjrodro",
     "copyright": "©2026 K.SON+IMAGE"
   },
 

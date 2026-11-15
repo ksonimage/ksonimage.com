@@ -15,7 +15,7 @@ startDate: 2019-01-21
 endDate: 2019-01-21
 link: "http://sharjahart.org/sharjah-art-foundation/programme/sharjah-film-platform"
 mapUrl: ""
-etc: ""
+etc: []
 image: "/images/posts/2019-sharjah-film-platform.png"
 gallery: []
 draft: false

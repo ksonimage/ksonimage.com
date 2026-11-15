@@ -12,11 +12,11 @@ export async function getStaticPaths() {
   const BLOG_FOLDER = "blog";
   const categories = await getTaxonomy(BLOG_FOLDER, "categories");
 
-  return categories.map((category) => {
-    return {
-      params: { category },
-    };
-  });
+  return categories
+    .filter((category) => typeof category === "string" && category.trim() !== "")
+    .map((category) => ({
+      params: { category: category.trim() },
+    }));
 }
 
 const { category } = Astro.params;

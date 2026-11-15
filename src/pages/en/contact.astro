@@ -20,15 +20,15 @@ if (!buildDrafts && contactIndex.data.draft) {
   description={description}
   image={image}
 >
-  <PageHeader title={title} />
+  <PageHeader title={title.toUpperCase()} />
   <section class="section-sm">
     <div class="container">
       <div class="row">
         <div class="max-w-lg mr-auto ml-0 text-left">
-          <form action={contact_form_action} method="POST">
+          <form id="contact-form" action={contact_form_action} method="POST">
             <div class="mb-6">
               <label for="name" class="form-label">
-                Full Name <span class="text-red-500">*</span>
+                Name <span class="text-red-500">*</span>
               </label>
               <input
                 id="name"
@@ -41,7 +41,7 @@ if (!buildDrafts && contactIndex.data.draft) {
             </div>
             <div class="mb-6">
               <label for="email" class="form-label">
-                Working Mail <span class="text-red-500">*</span>
+                Email <span class="text-red-500">*</span>
               </label>
               <input
                 id="email"
@@ -54,20 +54,71 @@ if (!buildDrafts && contactIndex.data.draft) {
             </div>
             <div class="mb-6">
               <label for="message" class="form-label">
-                Anything else? <span class="text-red-500">*</span>
+                Message <span class="text-red-500">*</span>
               </label>
               <textarea
                 id="message"
                 name="message"
                 class="form-input"
-                placeholder="Message goes here..."
+                placeholder="Write your message here..."
                 required
                 rows="8"></textarea>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button id="submit-btn" type="submit" class="btn btn-primary">
+              Send Message
+            </button>
+            <p id="form-status" class="mt-4 hidden text-sm font-medium"></p>
           </form>
         </div>
       </div>
     </div>
   </section>
 </Base>
+
+<script>
+  function initContactForm() {
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement | null;
+    const status = document.getElementById("form-status");
+
+    if (!form || !submitBtn || !status) return;
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const data = new FormData(form);
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Sending...";
+      status.classList.add("hidden");
+      status.classList.remove("text-red-500", "text-green-600", "dark:text-green-400");
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: data,
+          headers: { Accept: "application/json" },
+        });
+
+        status.classList.remove("hidden");
+        if (response.ok) {
+          status.textContent = "Your message has been sent successfully. Thank you!";
+          status.classList.add("text-green-600", "dark:text-green-400");
+          form.reset();
+        } else {
+          status.textContent = "Failed to send message. Please try again later.";
+          status.classList.add("text-red-500");
+        }
+      } catch {
+        status.classList.remove("hidden");
+        status.textContent = "A network error occurred. Please check your connection.";
+        status.classList.add("text-red-500");
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Send Message";
+      }
+    });
+  }
+
+  initContactForm();
+  document.addEventListener("astro:after-swap", initContactForm);
+</script>
