@@ -35,12 +35,12 @@ draft: false
 
 **참여작품**
  
-〈[제3언어](https:/ksonimage.com/the-third-tongue/)〉, 2003, HD, 흑백, 사운드, 14분  
-〈[리서치](https:/ksonimage.com/research/)〉, 2008, HD, 컬러, 사운드, 18분.  
-〈[모순론](https:/ksonimage.com/on-contradiction/)〉, 2017, 2채널 비디오설치, 컬러, 사운드, 8분  
-〈[유배의 풍경](https:/ksonimage.com/exilandscape/)〉, 2025, 4K, 컬러, 사운드, 90분  
-〈[시민 K의 초상](https:/ksonimage.com/citizenk/)〉, 2024, 5채널 비디오설치, HD, 컬러, 사운드, 38분  
-〈[거룩한 성](https:/ksonimage.com/the-holy-city/)〉, 2026, 4K, 4채널 비디오설치, 컬러/흑백, 사운드, 40분
+〈[제3언어](/the-third-tongue)〉, 2003, HD, 흑백, 사운드, 14분  
+〈[리서치](/research)〉, 2008, HD, 컬러, 사운드, 18분.  
+〈[모순론](/on-contradiction)〉, 2017, 2채널 비디오설치, 컬러, 사운드, 8분  
+〈[유배의 풍경](/exilandscape)〉, 2025, 4K, 컬러, 사운드, 90분  
+〈[시민 K의 초상](/citizenk)〉, 2024, 5채널 비디오설치, HD, 컬러, 사운드, 38분  
+〈[거룩한 성](/the-holy-city)〉, 2026, 4K, 4채널 비디오설치, 컬러/흑백, 사운드, 40분
 
 **전시 서문(발췌)**
 

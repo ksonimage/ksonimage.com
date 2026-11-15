@@ -35,12 +35,12 @@ draft: false
 
 **참여작품**
  
-〈[The Third Tongue](https:/ksonimage.com/en/the-third-tongue/)〉, 2003, 16mm, Experimental, B&W, Sound, 14:13  
-〈[Re-Search](https:/ksonimage.com/en/re-search/)〉, 2008, HD, Fiction, Color, Sound, 20:00  
-〈[On Contradiction](https:/ksonimage.com/en/on-contradiction/)〉, 2017, 2 channel video installation, HD, Color, Sound, 08:15  
-〈[Exilandscape](https:/ksonimage.com/en/exilandscape/)〉, 2025, Exp./Doc., 4K/DCP, Color, Sound, 90:00  
-〈[A Portrait of Citizen K](https:/ksonimage.com/en/a-portrait-of-citizen-k/)〉, 2023-2024, 5 channel video installation, HD, Color, Sound, 39:00  
-〈[The Holy City](https:/ksonimage.com/the-holy-city/)〉, 2026, 4-channel video isntallation, 4K, Color/B&W, Sound, 40:00
+〈[The Third Tongue](/en/the-third-tongue)〉, 2003, 16mm, Experimental, B&W, Sound, 14:13  
+〈[Re-Search](/en/re-search)〉, 2008, HD, Fiction, Color, Sound, 20:00  
+〈[On Contradiction](/en/on-contradiction)〉, 2017, 2 channel video installation, HD, Color, Sound, 08:15   
+〈[Exilandscape](/en/exilandscape)〉, 2025, Exp./Doc., 4K/DCP, Color, Sound, 90:00   
+〈[A Portrait of Citizen K](/en/a-portrait-of-citizen-k)〉, 2023-2024, 5 channel video installation, HD, Color, Sound, 39:00     
+〈[The Holy City](/en/the-holy-city)〉, 2026, 4-channel video isntallation, 4K, Color/B&W, Sound, 40:00
 
 **Foreword excepts (Source: HMK)**
 
