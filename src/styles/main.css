@@ -10,6 +10,15 @@
   */
   --font-primary: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Inter", "Pretendard", sans-serif !important;
   --font-secondary: var(--font-primary) !important;
+  color-scheme: light only !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  html,
+  body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+  }
 }
 
 html, body, *, h1, h2, h3, h4, h5, h6, p, a, span {
@@ -61,8 +70,10 @@ h5, h6 {
 @plugin "@tailwindcss/forms";
 @plugin "@tailwindcss/typography";
 @plugin 'tailwind-bootstrap-grid';
+/*
 @custom-variant dark (&:where(.dark, .dark *));
-
+*/
+@custom-variant dark (&:where(.disable-dark-mode));
 /* Auto-generated theme from "theme.json"*/
 @import "./generated-theme.css";
 
