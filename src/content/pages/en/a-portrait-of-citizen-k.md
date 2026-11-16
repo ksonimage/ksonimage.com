@@ -35,8 +35,10 @@ _**A Portrait of Citizen K**_ chronicles the life and death of a middle-aged man
 
 ### Exhibitions
 
-2026 **_The Square and the Cross_**,  Haus für Medienkunst Oldenburg, DE 2023 (solo) _A Portrait of Citizen K_, MMCA Changdong, Seoul, KR
+2026 **_The Square and the Cross_**,  Haus für Medienkunst Oldenburg, DE   
+2023 (solo) _**A Portrait of Citizen K**_, MMCA Changdong, Seoul, KR
 
 ### Supported by
 
-Seoul Metropolitan Government Seoul Foundation of Arts and Culture
+Seoul Metropolitan Government   
+Seoul Foundation of Arts and Culture

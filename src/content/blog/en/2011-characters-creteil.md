@@ -10,7 +10,7 @@ venue: "Festival International de Films de Femmes de Créteil"
 organizer: ""
 startDate: 2011.3.25.
 endDate: 2011.4.3.
-link: "http:/www.filmsdefemmes.com/"
+link: "http://www.filmsdefemmes.com/"
 mapUrl: ""
 etc: []
 image: "/images/posts/2011-creteil.png"

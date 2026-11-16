@@ -10,7 +10,7 @@ venue: "로테르담국제영화제"
 organizer: ""
 startDate:  2011.1.26.
 endDate:  2011.2.6.
-link: "http:/www.filmfestivalrotterdam.com/"
+link: "http://www.filmfestivalrotterdam.com/"
 mapUrl: ""
 etc: []
 image: "/images/posts/2011-characters-iffrotterdam.png"

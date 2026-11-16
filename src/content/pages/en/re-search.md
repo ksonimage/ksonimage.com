@@ -20,9 +20,9 @@ A researcher's blind struggle for her thesis inside the engulfing white space cr
 ### EXHIBITIONS & SCREENINGS
 
 2026 **_The Square and the Cross_**,  Haus für Medienkunst Oldenburg, DE  
-2024 (group) _Fantasia of the Archives_, Art Archives SeMA, Seoul, KR  
-2018 _Dear Cinema 4_, MMCA Film & Video, Seoul, KR  
-2016 (group) _Emerging Other_, Arko Art Center, Seoul, KR  
+2024 _**Fantasia of the Archives**_, Art Archives SeMA, Seoul, KR  
+2018 _**Dear Cinema 4**_, MMCA Film & Video, Seoul, KR  
+2016 _**Emerging Other**_, Arko Art Center, Seoul, KR  
 2009 Vancouver International Film Festival  
 2009 Visions du Réel International Film Festival  
 2009 Festival International de Films de Femmes de Créteil  

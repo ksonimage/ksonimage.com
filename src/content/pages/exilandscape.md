@@ -29,9 +29,9 @@ gallery:
 ### 전시 및 상영
 
 2026 **_The Square and the Cross_**,  Haus für Medienkunst Oldenburg, DE  
-2026 단체전 《나의 인류》, 아트센터 예술의시간, 서울, 한국  
-2025 기획전 ≪영화 이후≫, 부산현대미술관, 부산, 한국  
-2024 개인전 ≪유배의 풍경≫, 아트스페이스3 유구전시실, 서울, 한국
+2026 《나의 인류》, 아트센터 예술의시간, 서울, 한국  
+2025 《영화 이후》, 부산현대미술관, 부산, 한국  
+2024 개인전 《유배의 풍경》, 아트스페이스3 유구전시실, 서울, 한국
 
 ### 제작지원
 
@@ -41,7 +41,3 @@ gallery:
 ### 후원
 
 서울특별시, 서울문화재단, 한국문화예술위원회
-
-\[siteorigin\_widget class="SiteOrigin\_Widget\_Video\_Widget"\]\[/siteorigin\_widget\]
-
-\[envira-gallery id="8321"\]

@@ -10,7 +10,7 @@ venue: "뉴호라이즌 국제영화제"
 organizer: ""
 startDate: 2011.7.21.
 endDate: 2011.7.31.
-link: "http:/www.enh.pl/"
+link: "http://www.enh.pl/"
 mapUrl: ""
 etc: []
 image: "/images/posts/2011-characters-new-horizons.jpg"

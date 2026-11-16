@@ -17,7 +17,7 @@ venue: "Mise-en-scène Short Film Festival"
 organizer: ""
 startDate: 2021. 6.24.
 endDate: 2021. 6.30.
-link: "http:/msff.or.kr/"
+link: "http://msff.or.kr/"
 mapUrl: ""
 etc: []
 image: "/images/posts/2021-msff.jpg"

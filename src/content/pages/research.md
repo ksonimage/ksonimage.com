@@ -19,10 +19,10 @@ gallery:
 
 ### 전시 및 상영
 
-2026 기획전 《광장과 십자가 The Square and the Cross》,  Haus für Medienkunst Oldenburg, DE  
-2024 단체전 《아카이브 환상》, 서울시립미술아카이브, 서울  
+2026 **_The Square and the Cross_**,  Haus für Medienkunst Oldenburg, DE  
+2024 《아카이브 환상》, 서울시립미술아카이브, 서울  
 2018 디어시네마 4, 국립현대미술관 필름앤비디오, 서울  
-2016 단체전 《관계적 시간/Emerging Other》, 아르코미술관, 서울  
+2016 《관계적 시간/Emerging Other》, 아르코미술관, 서울  
 2009 밴쿠버국제영화제, 캐나다 2009 Visions du Réel 국제영화제, 리옹, 스위스  
 2009 크레테이유 국제여성영화제, 프랑스  
 2008 부산국제영화제

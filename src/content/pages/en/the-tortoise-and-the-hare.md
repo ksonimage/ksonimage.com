@@ -16,5 +16,5 @@ gallery:
 
 ### EXHIBITIONS & SCREENINGS
 
-2018 (solo) THE HARE IN EXILE, JCC Art Center, Seoul, KR  
-2017 (group) MMCA Changdong OPEN 2017, MMCA Changdong, Seoul, KR
+2018 (solo) _**THE HARE IN EXILE**_, JCC Art Center, Seoul, KR  
+2017 _**MMCA Changdong OPEN 2017**_, MMCA Changdong, Seoul, KR

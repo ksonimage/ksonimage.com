@@ -16,11 +16,11 @@ Stationary yet ever in motion, the camera captures an ethereal vision—a glimps
 
 ### EXHIBITIONS & SCREENINGS
 
-2026 (group) _**Toward My Humanity**_, Art Center Art Moment, Seoul, KR  
-2019 (group) _**Video Landscape**_, OVNi Festival, Nice, FR  
+2026 _**Toward My Humanity**_, Art Center Art Moment, Seoul, KR  
+2019 _**Video Landscape**_, OVNi Festival, Nice, FR  
 2019 EMAF, Ewha Women’s University, Seoul, KR  
 2018 _**Dear Cinema 4:Kwang-Ju Son**_, MMCA Film & Video, Seoul, KR  
-2018 (group) _**Video Landscape**_, Total Museum of Contemporary Art,, Seoul, KR  
+2018 _**Video Landscape**_, Total Museum of Contemporary Art,, Seoul, KR  
 2018 (solo) _**The Hare in Exile**_, JCC Art Center, Seoul, KR  
-2016 (group) _**Emerging Other**_, Arko Art Center, Seoul, KR  
+2016 _**Emerging Other**_, Arko Art Center, Seoul, KR  
 2007 Open Studio @ Rijksakademie, Amsterdam, NL

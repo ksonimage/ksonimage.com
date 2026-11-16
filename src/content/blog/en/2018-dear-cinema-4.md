@@ -19,7 +19,7 @@ venue: "MMCA Film & Video"
 organizer: ""
 startDate: 2018.9.5.
 endDate: 2018.10.6.
-link: "http:/www.mmca.go.kr/eng/exhibitions/exhibitionsDetailExh.do?exhId=201808200001078"
+link: "http://www.mmca.go.kr/eng/exhibitions/exhibitionsDetailExh.do?exhId=201808200001078"
 mapUrl: ""
 etc: []
 image: "/images/posts/2018-dear-cinema-4-mmca.jpg"

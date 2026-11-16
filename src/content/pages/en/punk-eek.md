@@ -21,14 +21,14 @@ En route to a blind date, elitist Mr. NO Jae-Won, a wealthy young man, frantical
 
 ### EXHIBITIONS & SCREENINGS
 
-2024 (group) _Fantasia of the Archives_, Art Archives SeMA, Seoul, KR  
+2024 **_Fantasia of the Archives_**, Art Archives SeMA, Seoul, KR  
 2021 Mise-en-scene Film Festival, Seoul, KR  
 2008 IndieForum, Seoul, KR  
-2008 (group) _Documentary Show-Diary_, Ilmin Museum of Art, Seoul, KR  
+2008 **_Documentary Show-Diary_**, Ilmin Museum of Art, Seoul, KR  
 2008 Asian Hot Shots, Berlin, DE  
 2007 Sangsangmadang Opening Festival, Seoul, KR  
-2007 (group) _KölnShow2_ (DE)  
-2006 (group) _Shared History/Decolonising the Image_, Amsterdam, NL  
+2007 **_KölnShow2_** (DE)  
+2006 _**Shared History/Decolonising the Image**_, Amsterdam, NL  
 2006 Syracuse International Film & Video Festival (US)  
 2005 Frankfurt Book Fair: Focus on Korea (DE)  
 2005 International Short Film Festival in Drama: Honorary Distinction (GR)  

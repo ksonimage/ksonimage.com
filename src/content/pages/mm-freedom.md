@@ -15,5 +15,5 @@ gallery:
 
 ### 전시 및 상영
 
-2017 단체전 ≪제3의 언어/_**The Third Tongue**_≫, MMCA 창동  
-2016 단체전 ≪관계적 시간/_**Emerging Other**_≫, 아르코미술관
+2017 ≪제3의 언어/_**The Third Tongue**_≫, MMCA 창동  
+2016 ≪관계적 시간/_**Emerging Other**_≫, 아르코미술관

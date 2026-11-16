@@ -17,8 +17,8 @@ The work is structured around Walt Whitman’s poem _On the Beach at Night_, rec
 
 ### Exhibitions
 
-2026 (group) _Toward My Humanity_, Art Center Art Moment, Seoul, KR  
-2025 (group) _Artists at Glenfiddich_, Glenfiddich Gallery, Scotland, UK
+2026 _**Toward My Humanity**_, Art Center Art Moment, Seoul, KR  
+2025 _**Artists at Glenfiddich**_, Glenfiddich Gallery, Scotland, UK
 
 ### Collection
 

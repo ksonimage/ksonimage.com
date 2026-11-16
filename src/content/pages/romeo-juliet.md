@@ -2,7 +2,7 @@
 title: "로미오와 줄리엣"
 date: 2022-02-08
 info: "2019, 드라마/코미디, HD, 컬러, 사운드, 25:00"
-vimeoId: "1203619334"
+vimeoId: "1203619325"
 gallery: 
 - "/images/works/2019-romeo-and-juliet/2019-romeo-and-juliet.jpg"
 - "/images/works/2019-romeo-and-juliet/2019-romeo-and-juliet-installation-1.jpg"
@@ -16,5 +16,5 @@ gallery:
 
 ### 전시 및 상영
 
-2022 온라인 전시 《우화 The Fables》  
-2018 단체전 《뻐꾸기알》, 난지미술창작스튜디오, 서울, 한국
+2022 온라인 《우화 The Fables》  
+2018 《뻐꾸기알》, 난지미술창작스튜디오, 서울, 한국

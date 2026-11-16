@@ -18,12 +18,3 @@ image: "/images/posts/2017-the-third-tongue-mmca-changdong.jpg"
 gallery: []
 draft: false
 ---
-
-\[siteorigin\_widget class="SiteOrigin\_Widget\_Image\_Widget"\]\[/siteorigin\_widget\]
-
-
-
-## <제3의 언어>
-
-2017.5.25.-6.11. 
-국립현대미술관 창동미술창작스튜디오

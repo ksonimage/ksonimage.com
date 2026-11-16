@@ -19,5 +19,5 @@ gallery:
 
 2026 **_The Square and the Cross_**,  Haus für Medienkunst Oldenburg, DE  
 2018 디어시네마 4, 국립현대미술관 필름앤비디오, 서울  
-2017 단체전 《제3의 언어/The Third Tongue》, MMCA 창동, 서울  
-2015 단체전 Swatch Faces 2015 @ Venice Biennale, Venice, IT
+2017 《제3의 언어/The Third Tongue》, MMCA 창동, 서울  
+2015 Swatch Faces 2015 @ Venice Biennale, Venice, IT

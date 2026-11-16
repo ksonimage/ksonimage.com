@@ -18,7 +18,10 @@ Throughout years of relentless interrogation, the bunker grapples with the decis
 
 ### EXHIBITIONS & SCREENINGS
 
-2024 (group) _Fantasia of the Archives_, Art Archives SeMA, Seoul, KR 2022 (group) _Archived Memories_, SeMA Bunker, Seoul, KR 2019 Sharjah Film Platform, Sharjah, AE 2018 (solo) _A Room Without Mirrors_, SeMA Bunker Historic Gallery, Seoul, KR
+2024 _**Fantasia of the Archives**_, Art Archives SeMA, Seoul, KR   
+2022 _**Archived Memories**_, SeMA Bunker, Seoul, KR   
+2019 Sharjah Film Platform, Sharjah, AE   
+2018 (solo) _A Room Without Mirrors_, SeMA Bunker Historic Gallery, Seoul, KR
 
 ### Supported by
 

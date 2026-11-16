@@ -30,11 +30,11 @@ In the wake of my mother's passing, I embarked on this remarkable journey in 201
 
 ### EXHIBITIONS & SCREENINGS
 
-2023 (group) _**Narratives for Nature, Regarding Nature**_, Daecheongho Museum of Art, Cheongju, KR  
-2023 (group) _**Direct from Antartica and the Arctic to Incheon Airport**_, Incheon International Airport, Incheon, KR  
-2023 (group) _**0.1cm:Artists who Traveled to the Poles**_, Gallery K.O.N.G., Seoul, KR  
-2023 (group) _**Extra Contrast:Porsche and Dump Truck**_, Artplug Yeonsu, Incheon, KR  
-2022 (group) _**Place, Site, Space**_, Art Center Whiteblock, Paju, KR  
+2023 _**Narratives for Nature, Regarding Nature**_, Daecheongho Museum of Art, Cheongju, KR  
+2023 _**Direct from Antartica and the Arctic to Incheon Airport**_, Incheon International Airport, Incheon, KR  
+2023 _**0.1cm:Artists who Traveled to the Poles**_, Gallery K.O.N.G., Seoul, KR  
+2023 _**Extra Contrast:Porsche and Dump Truck**_, Artplug Yeonsu, Incheon, KR  
+2022 _**Place, Site, Space**_, Art Center Whiteblock, Paju, KR  
 2021 (solo) _**Phaedo**_, Art Space Gwanggyo, Suwon, KR
 
 ### COLLECTIONS

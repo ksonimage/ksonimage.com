@@ -25,5 +25,3 @@ image: ""
 gallery: []
 draft: false
 ---
-
-## 번외편:A-SIDE-B

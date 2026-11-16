@@ -10,7 +10,7 @@ venue: "전주국제영화제"
 organizer: ""
 startDate: 2011.4.28.
 endDate: 2011.5.6.
-link: "http:/www.jiff.or.kr/"
+link: "http://www.jiff.or.kr/"
 mapUrl: ""
 etc: []
 image: "/images/posts/2011-characters-jiff.png"

@@ -26,15 +26,16 @@ gallery:
 ### 전시 및 상영
 
 2026 **_The Square and the Cross_**,  Haus für Medienkunst Oldenburg, DE  
-2024 단체전 《아카이브 환상》, 서울시립미술아카이브  
-2024 단체전 ≪MMCA 사진소장품전: 당신의 세상은 지금 몇 시?≫, 국립현대미술관, 과천 2023 서울실험영화페스티벌(EXiS), 문래예술공장 박스씨어터, 서울  
+2024 《아카이브 환상》, 서울시립미술아카이브  
+2024 ≪MMCA 사진소장품전: 당신의 세상은 지금 몇 시?≫, 국립현대미술관, 과천   
+2023 서울실험영화페스티벌(EXiS), 문래예술공장 박스씨어터, 서울  
 2018 디어시네마 4, 국립현대미술관 필름앤비디오, 서울  
-2016 단체전 ≪관계적 시간/Emerging Other≫, 아르코미술관, 서울  
+2016 ≪관계적 시간/Emerging Other≫, 아르코미술관, 서울  
 2008 다큐멘터리쇼-Diary전, 일민미술관, 서울  
-2008 단체전 _Inner Lines_, 인도  
+2008 _**Inner Lines**_, 인도  
 2007 상상마당 개관영화제  
 2007 Documentary FilmPlatform ZONE, 벨기에  
-2006 단체전 _Shared History/Decolonising the Image_, 암스테르담, 네덜란드  
+2006 _**Shared History/Decolonising the Image**_, 암스테르담, 네덜란드  
 2006 Women of Color Film Festival, 버클리, 미국  
 2005 프랑크푸르트 도서전: 한국현대사관련 특별상영전, 독일  
 2005 브리즈번 국제영화제: 한국독립영화특별전, 호주  

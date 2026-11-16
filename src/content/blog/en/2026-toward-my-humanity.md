@@ -20,7 +20,7 @@ venue: "Art Centre Art Moment 2F"
 organizer: ""
 startDate: 2026. 5. 30. 
 endDate: 2026. 7. 11. 
-link: "https:/artmoment.org/%eb%82%98%ec%9d%98%ec%9d%b8%eb%a5%98/"
+link: "https://artmoment.org/%eb%82%98%ec%9d%98%ec%9d%b8%eb%a5%98/"
 mapUrl: ""
 etc: []
 image: "/images/posts/2026-toward-my-humanity.jpg"
@@ -30,13 +30,12 @@ gallery:
 draft: false
 ---
 
-**참여작가** | 손광주 전보경 장서영 함혜경 손수민 김상하  
 **참여작품** |  
-〈[APPARITION](https:/ksonimage.com/apparition/)〉, 2007, HD, 컬러, 사운드, 10'30''  
-〈[캐릭터 REVISITED](https:/ksonimage.com/characters-revisited/)〉, 2016, HD, 컬러, 사운드, 18'15''  
-〈[가위 바위 보](https:/ksonimage.com/rock_scissors_paper/)〉, 2020, HD, 흑백, 사운드, 9'4''  
-〈[유배의 풍경](https:/ksonimage.com/exilandscape/)〉, 2025, HD, 컬러, 사운드, 90'  
-〈[울지 마, 아이야](https:/ksonimage.com/weep-not-child/)〉, 2025-2026, 4K, 컬러, 사운드, 6'1''
+〈[APPARITION](/en/apparition)〉, 2007, HD, 컬러, 사운드, 10'30''  
+〈[캐릭터 REVISITED](/en/characters-revisited)〉, 2016, HD, 컬러, 사운드, 18'15''  
+〈[가위 바위 보](/en/rock_scissors_paper)〉, 2020, HD, 흑백, 사운드, 9'4''  
+〈[유배의 풍경](/en/exilandscape)〉, 2025, HD, 컬러, 사운드, 90'  
+〈[울지 마, 아이야](/en/weep-not-child)〉, 2025-2026, 4K, 컬러, 사운드, 6'1''
 
 **Foreword excepts (Source: Art Center ArtMoment)**
 

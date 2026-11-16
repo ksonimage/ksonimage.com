@@ -28,7 +28,7 @@ gallery:
 
 ### 전시 및 상영
 
-2026 단체전 《나의 인류》, 아트센터 예술의시간, 서울, 한국  
+2026 《나의 인류》, 아트센터 예술의시간, 서울, 한국  
 2022 개인전 ≪우화 The Fables≫, 화이트블럭 천안창작촌  
 2017 Rencontres Internaionales Paris/Berlin  
-2016 단체전 ≪관계적 시간/_**Emerging Other**_≫, 아르코미술관, 서울
+2016 ≪관계적 시간/_**Emerging Other**_≫, 아르코미술관, 서울

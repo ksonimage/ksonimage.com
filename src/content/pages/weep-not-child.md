@@ -17,8 +17,8 @@ gallery:
 
 ### 전시 및 상영
 
-2026 단체전 《나의 인류》, 아트센터 예술의시간, 서울, 한국  
-2025 단체전 _Artists at Glenfiddich_, Glenfiddich Gallery, Scotland, UK
+2026 《나의 인류》, 아트센터 예술의시간, 서울, 한국  
+2025 _**Artists at Glenfiddich**_, Glenfiddich Gallery, Scotland, UK
 
 ### 작품소장
 

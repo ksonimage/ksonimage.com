@@ -21,8 +21,8 @@ Immersed in a profound sense of déjà vu, **ROCK SCISSORS PAPER** transports us
 
 ### EXHIBITIONS & SCREENINGS
 
-2026 (group) _**Toward My Humanity**_, Art Center Art Moment, Seoul, KR  
-2020 (group) _**ELSEWHERE**_, Atelier Hermès, Seoul, KR
+2026 _**Toward My Humanity**_, Art Center Art Moment, Seoul, KR  
+2020 _**ELSEWHERE**_, Atelier Hermès, Seoul, KR
 
 ### Supported by
 

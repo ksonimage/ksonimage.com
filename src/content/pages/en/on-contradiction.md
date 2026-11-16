@@ -18,6 +18,6 @@ gallery:
 ### EXHIBITIONS & SCREENINGS
 
 2026 **_The Square and the Cross_**,  Haus für Medienkunst Oldenburg, DE  
-2018 Dear Cinema 4, MMCA Film & Video, Seoul, KR  
-2017 (group) The Third Tongue, MMCA Changdong, Seoul, KR  
-2015 (group) Swatch Faces 2015, Venice Biennale, Venice, IT
+2018 **_Dear Cinema 4_**, MMCA Film & Video, Seoul, KR  
+2017 _**The Third Tongue**_, MMCA Changdong, Seoul, KR  
+2015 _**Swatch Faces 2015**_, Venice Biennale, Venice, IT

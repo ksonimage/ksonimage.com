@@ -23,11 +23,11 @@ gallery:
 
 ### 전시 및 상영
 
-2024 단체전 《아카이브 환상》, 서울시립미술아카이브  
+2024 《아카이브 환상》, 서울시립미술아카이브  
 2021 미쟝센 단편영화제 2008 다큐멘터리쇼-Diary전(일민미술관)  
 2008 Asian Hot Shots (독일, 베를린) 2007 시네마 상상마당 개관영화제  
-2007 단체전 KölnShow2, Galerie Hammelehle und Ahrens, 쾰른, 독일  
-2006 단체전 Shared History/Decolonising the Image, Arti et Amicitiae/W139, 암스테르담, 네덜란드  
+2007 KölnShow2, Galerie Hammelehle und Ahrens, 쾰른, 독일  
+2006 _**Shared History/Decolonising the Image**_, Arti et Amicitiae/W139, 암스테르담, 네덜란드  
 2006 시라큐즈 국제영화제 경쟁부문 (미국)  
 2005 프랑크푸르트 도서전: 주빈국선정기념 특별상영전 (독일, 프랑크푸르트)  
 2005 드라마 국제단편영화제 (그리스, 드라마) : 명예상(honorary distinction)  

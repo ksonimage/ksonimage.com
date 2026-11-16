@@ -19,7 +19,7 @@ venue: "아트플러그 연수"
 organizer: "연수문화재단"
 startDate: 2023.5.30.  
 endDate: 2023.7.16.
-link: "http:/www.ysfac.or.kr/user/cultural/events_view.php?sq=189&search="
+link: "http://www.ysfac.or.kr/user/cultural/events_view.php?sq=189&search="
 mapUrl: ""
 etc: ["전시협조 : 국립현대미술관 작품보존미술은행관리과"]
 image: "/images/posts/2023-extra-contrast-porsche-and-dump-truck.jpg"

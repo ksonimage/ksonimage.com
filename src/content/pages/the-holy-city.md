@@ -5,7 +5,9 @@ layout: "works"
 date: 2026-10-12
 vimeoId: "1234988439"
 gallery: 
-- "/images/works/2026-the-holy-city/1.jpg"
+- "/images/works/2026-the-holy-city/2026-the-holy-city-01.jpg"
+- "/images/works/2026-the-holy-city/2026-the-holy-city-02.jpg"
+- "/images/works/2026-the-holy-city/2026-the-holy-city-03.jpg"
 
 ---
 

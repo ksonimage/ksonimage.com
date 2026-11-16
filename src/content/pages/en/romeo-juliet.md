@@ -2,7 +2,7 @@
 title: "Romeo and Juliet"
 date: 2022-02-08
 info: "2019, Drama/Comedy, HD, Color, Sound, 25:00"
-vimeoId: "1203619334"
+vimeoId: "1203619325"
 gallery: 
 - "/images/works/2019-romeo-and-juliet/2019-romeo-and-juliet.jpg"
 - "/images/works/2019-romeo-and-juliet/2019-romeo-and-juliet-installation-1.jpg"
@@ -16,5 +16,5 @@ Within the context of a film production, actors are tasked with portraying the i
 
 ### EXHIBITIONS & SCREENINGS
 
-2022 Online Exhibition < The Fables>  
-2018 group <BROOD PARASITISM>, SeMA Nanji, Seoul, KR
+2022 Online Exhibition _**The Fables**_  
+2018 _**BROOD PARASITISM**_, SeMA Nanji, Seoul, KR

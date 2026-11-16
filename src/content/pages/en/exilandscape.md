@@ -25,12 +25,18 @@ Through this, instead of accepting the notion of a "failed revolution" as negati
 
 ### TEXTS
 
-[Anti-Spectacle Landscapes](https://drive.google.com/file/d/1FGlSBj2BG1O78U6MvedDrDOc9heTPbtC/view?usp=sharing) - Artist's Note [Threefold Landscapes, Distant Sorrow](https://drive.google.com/file/d/17Fcvv6GMnpq8PtevhBNLxNM6X-FPeYJw/view?usp=sharing) - SEO Young-Chae / Korean Literary Critic
+- [Anti-Spectacle Landscapes](https://drive.google.com/file/d/1FGlSBj2BG1O78U6MvedDrDOc9heTPbtC/view?usp=sharing) - Artist's Note              
+- [Threefold Landscapes, Distant. Sorrow](https://drive.google.com/file/d/17Fcvv6GMnpq8PtevhBNLxNM6X-FPeYJw/view?usp=sharing) - SEO Young-Chae / Korean Literary Critic
 
 ### Exhibitions
 
-2026 **_The Square and the Cross_**,  Haus für Medienkunst Oldenburg, DE 2026 (group) **_Toward My Humanity_**, Art Center Art Moment, Seoul, KR 2025 _**After Cinema**_, MoCA Busan, KR 2024 (solo) **_Exilandscape_**, Art Space 3, Seoul, KR
+2026 **_The Square and the Cross_**,  Haus für Medienkunst Oldenburg, DE   
+2026 **_Toward My Humanity_**, Art Center Art Moment, Seoul, KR   
+2025 _**After Cinema**_, MoCA Busan, KR   
+2024 (solo) **_Exilandscape_**, Art Space 3, Seoul, KR
 
 ### Supported by
 
-Seoul Metropolitan Government Seoul Foundation of Arts and Culture Arts Council Korea
+Seoul Metropolitan Government   
+Seoul Foundation of Arts and Culture   
+Arts Council Korea

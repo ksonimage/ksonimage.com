@@ -10,7 +10,7 @@ venue: "크레테이유 국제여성영화제"
 organizer: ""
 startDate: 2011.3.25.
 endDate: 2011.4.3.
-link: "http:/www.filmsdefemmes.com/"
+link: "http://www.filmsdefemmes.com/"
 mapUrl: ""
 etc: []
 image: "/images/posts/2011-creteil.png"

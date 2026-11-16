@@ -22,15 +22,15 @@ In its profound exploration of the English language learning journey, **THE THIR
 ### EXHIBITIONS & SCREENINGS
 
 2026 **_The Square and the Cross_**,  Haus für Medienkunst Oldenburg, DE  
-2024 (group) _Fantasia of the Archives_, Art Archives SeMA, Seoul, KR  
-2024 (group) _MMCA Photographs Collection: What's the Time in Your World?_, MMCA, Gwacheon, KR  
+2024 _**Fantasia of the Archives**_, Art Archives SeMA, Seoul, KR  
+2024 _**MMCA Photographs Collection: What's the Time in Your World?**_, MMCA, Gwacheon, KR  
 2023 Experimental Film and Video Festival in Seoul(EXiS), Seoul, KR  
 2018 Dear Cinema 4, MMCA Film & Video, Seoul, KR  
-2016 (group) _Emerging Other_, Arko Art Center, Seoul, KR  
-2008 (group) _Documentary Show-Diary_, Ilmin Museum of Art, Seoul, KR  
-2008 (group) _Inner Lines_, Guwahati, IN  
+2016 _**Emerging Other**_, Arko Art Center, Seoul, KR  
+2008 _**Documentary Show-Diary**_, Ilmin Museum of Art, Seoul, KR  
+2008 _**Inner Lines**_, Guwahati, IN  
 2007 Sangsangmadang Opening Festival, Seoul, KR  
-2006 (group) _Shared History/Decolonising the Image_, Amsterdam, NL  
+2006 _**Shared History/Decolonising the Image**_, Amsterdam, NL  
 2006 Women of Color Film Festival (Berkeley, CA)  
 2005 Frankfurt Book Fair: Special Screening Regarding Korean Modern History (DE)  
 2005 Festival International de Films de Creteil (FR)  

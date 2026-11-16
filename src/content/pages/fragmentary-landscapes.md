@@ -20,14 +20,12 @@ gallery:
 
 ### 전시 및 상영
 
-2024 단체전 《아카이브 환상》, 서울시립미술아카이브, 서울  
+2024 《아카이브 환상》, 서울시립미술아카이브, 서울  
 2018 디어시네마 4, 국립현대미술관 필름&비디오, 서울  
 2008 전주국제영화제  
-2008 단체전 Inner Lines, 인도  
+2008 _**Inner Lines**_, 인도  
 2007 암스테르담 국제다큐멘터리 영화제(IDFA), 네덜란드
 
 ### 아카이빙
 
 한국영상자료원
-
-\[siteorigin\_widget class="SiteOrigin\_Widget\_Video\_Widget"\]\[/siteorigin\_widget\]

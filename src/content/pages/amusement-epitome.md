@@ -21,5 +21,5 @@ gallery:
 2023 VideoCity x CONTAINER CITY FESTIVAL STUTTGART, 독일  
 2023 VideoCity x Utopia Today: The Principle of Hope, REX Box, 베른, 스위스  
 2018 디어시네마 4, 국립현대미술관 필름앤비디오, 서울  
-2008 group _**Beyond Paradise: Performing Images in a Post-Tourism Time**_(Amsterdam, Netherlands)  
+2008 _**Beyond Paradise: Performing Images in a Post-Tourism Time**_(Amsterdam, Netherlands)  
 2007 Les Rencontres Internaionales Paris/Berlin/Madrid

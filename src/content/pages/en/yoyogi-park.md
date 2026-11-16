@@ -19,9 +19,9 @@ A video travelogue capturing a brief visit to Japan during the Korea-Japan Frien
 
 ### EXHIBITIONS & SCREENINGS
 
-2018 Dear Cinema 4, MMCA Film & Video, Seoul, KR  
-2016 group ‘Emerging Other’, Arko Art Center, Seoul, KR  
-2008 group “Documentary Show-Diary”(Ilmin Museum of Art, Seoul)  
+2018 _**Dear Cinema 4**_, MMCA Film & Video, Seoul, KR  
+2016 _**Emerging Other**_, Arko Art Center, Seoul, KR  
+2008 Documentary Show-Diary, Ilmin Museum of Art, Seoul, KR  
 2007 ImageForum: Korean Independent Cinema (Tokyo, Japan)  
 2007 Jeonju International Film Festival (Jeonju, Korea)  
 2007 International Film Festival in Rotterdam: Tiger Shorts Competition

@@ -33,7 +33,7 @@ gallery:
 draft: false
 ---
 
-**참여작품**
+**Participating Works**
  
 〈[The Third Tongue](/en/the-third-tongue)〉, 2003, 16mm, Experimental, B&W, Sound, 14:13  
 〈[Re-Search](/en/re-search)〉, 2008, HD, Fiction, Color, Sound, 20:00  

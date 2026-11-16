@@ -16,11 +16,11 @@ gallery:
 
 ### 전시 및 상영
 
-2026 단체전 《나의 인류》, 아트센터 예술의시간, 서울, 한국  
-2019 Video Landscape, OVNi Festival, Nice, FR  
+2026 《나의 인류》, 아트센터 예술의시간, 서울, 한국  
+2019 _**Video Landscape**_, OVNi Festival, Nice, FR  
 2019 EMAF, 이화여대 캠퍼스, 서울  
 2018 디어시네마 4, 국립현대미술관 필름앤비디오, 서울  
-2018 단체전 Video Landscape, 토탈미술관, 서울  
+2018 _**Video Landscape**_, 토탈미술관, 서울  
 2018 개인전 《망명토끼》, JCC미술관, 서울  
-2016 단체전 《관계적 시간/Emerging Other》, 아르코미술관, 서울  
+2016 《관계적 시간/Emerging Other》, 아르코미술관, 서울  
 2007 Open Ateliers @ Rijksakademie, Amsterdam, NL

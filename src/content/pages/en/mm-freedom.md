@@ -15,5 +15,5 @@ gallery:
 
 ### EXHIBITIONS & SCREENINGS
 
-2017 group ‘The Third Tongue’, MMCA Changdong, Seoul, KR  
-2016 group ‘Emerging Other’, Arko Art Center, Seoul, KR
+2017 **_The Third Tongue_**, MMCA Changdong, Seoul, KR  
+2016 **_Emerging Other_**, Arko Art Center, Seoul, KR

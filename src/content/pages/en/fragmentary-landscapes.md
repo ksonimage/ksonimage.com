@@ -20,8 +20,8 @@ The distant, elusive recollection of barren landscapes across the United States 
 
 ### EXHIBITIONS & SCREENINGS
 
-2024 (group) _Fantasia of the Archives_, Art Archives SeMA, Seoul, KR  
-2018 Dear Cinema 4, MMCA Film & Video, Seoul, KR  
+2024 _**Fantasia of the Archives**_, Art Archives SeMA, Seoul, KR  
+2018 _**Dear Cinema 4**_, MMCA Film & Video, Seoul, KR  
 2008 Jeonju International Film Festival, KR  
-2008 (group) _Inner Lines_, IN  
+2008 _**Inner Lines**_, IN  
 2007 International Documentary Film Festival Amsterdam(IDFA), NL

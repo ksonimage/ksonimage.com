@@ -31,7 +31,7 @@ gallery:
 ### 글
 
 - [창동의 기억](https://drive.google.com/file/d/1YTjF-f1UyXXd3lPTYtZgyvkRHvLn4u_E/view?usp=drive_link) - 작가노트
-- [주민등록번호로 남은 사내 - 아카이브 초상, 아카이브 수행](https://drive.google.com/file/d/1Vc0yLywArruYrNpHdOB0E2_HdTSL0Wzn/view?usp=drive_link) - 이나라/이미지문화연구자
+- [주민등록번호로 남은 사내 - 아카이브 초상, 아카이브 수행](https://drive.google.com/file/d/1Vc0yLywArruYrNpHdOB0E2_HdTSL0Wzn/view?usp=drive_link) - 이나라 / 이미지문화연구자
 
 ### 전시 및 상영
 

@@ -10,7 +10,7 @@ venue: "Göteborg International Film Festival"
 organizer: ""
 startDate: 2012.1.27.
 endDate: 2012.2.6.
-link: "http:/www.giff.se/"
+link: "http://www.giff.se/"
 mapUrl: ""
 etc: []
 image: "/images/posts/2012-goteborg.jpg"

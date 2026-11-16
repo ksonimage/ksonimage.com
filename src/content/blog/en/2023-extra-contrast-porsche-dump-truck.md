@@ -19,7 +19,7 @@ venue: "Artplug Yeonsu"
 organizer: "Yeonsu Foundation for Arts & Culture"
 startDate: 2023.5.30.  
 endDate: 2023.7.16.
-link: "http:/www.ysfac.or.kr/user/cultural/events_view.php?sq=189&search="
+link: "http://www.ysfac.or.kr/user/cultural/events_view.php?sq=189&search="
 mapUrl: ""
 etc: ["Supported by National Museum of Modern and Contemporary Art(MMCA) Art Bank"]
 image: "/images/posts/2023-extra-contrast-porsche-and-dump-truck.jpg"

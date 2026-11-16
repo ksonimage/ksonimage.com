@@ -3,7 +3,7 @@ title: "Amusement Epitome"
 info: "2006, EXP/DOC, DV, Color, Sound, 02:46"
 layout: "works"
 date: 2019-12-31
-vimeoId: "1203619317"
+vimeoId: "1203619218"
 gallery: 
 - "/images/works/2006-amusement-epitome/2006-amusement-epitome_1.jpg"
 - "/images/works/2006-amusement-epitome/2006-amusement-epitome_2.jpg"
@@ -21,6 +21,6 @@ A weekday afternoon on the Everland, one of the largest amusement parks in South
 2023 VideoCity x Tübingen: “Flower Power”, DE  
 2023 VideoCity x Container City Festival Stuttgart, DE  
 2023 VideoCity x Utopia Today, REX Box, Bern, CH  
-2018 Dear Cinema 4, National Musuem of Modern and Contemporary Art Film&Video, Seoul, KR  
-2008 group “Beyond Paradise: Performing Images in a Post-Tourism Time”(Amsterdam, Netherlands)  
+2018 _**Dear Cinema 4**_, National Musuem of Modern and Contemporary Art Film&Video, Seoul, KR  
+2008 _**Beyond Paradise: Performing Images in a Post-Tourism Time**_, Amsterdam, NL  
 2007 Les Rencontres Internaionales Paris/Berlin/Madrid

@@ -13,7 +13,7 @@ venue: "RENCONTRES INTERNATIONALES PARIS/BERLIN"
 organizer: ""
 startDate: 2017.6.13.
 endDate: 2017.6.18.
-link: "http:/art-action.org/"
+link: "http://art-action.org/"
 mapUrl: ""
 etc: []
 image: "/images/posts/2017-rencontres-internationales.jpg"

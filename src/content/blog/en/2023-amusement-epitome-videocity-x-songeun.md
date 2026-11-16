@@ -17,7 +17,7 @@ venue: "Songeun Art Center"
 organizer: ""
 startDate: 2023.11.1.
 endDate: 2023.11.30.
-link: "https:/www.videocity.org/flower-power-kr"
+link: "https://www.videocity.org/flower-power-kr"
 mapUrl: ""
 etc: []
 image: "/images/posts/2023-amusement-epitome-videocity-x-songeun.jpg"
@@ -29,7 +29,7 @@ draft: false
 시간: 10:00-22:00  
 큐레이터 소개: 11월 16-18일, 18:45-19:30
 
-[https:/www.videocity.org/s/digitalbooklet\_kr-x6gt.pdf](https:/www.videocity.org/s/digitalbooklet_kr-x6gt.pdf)
+[https://www.videocity.org/s/digitalbooklet\_kr-x6gt.pdf](https://www.videocity.org/s/digitalbooklet_kr-x6gt.pdf)
 
 **장소:** 송은 LED 스크린 (서울시 강남구 도산대로 441)  
 **참여작가:** Copa & Sordes, 조영주, Anouk Sebald, 손광주, Olga Titus, 윤교녕  
