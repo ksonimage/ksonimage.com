@@ -17,7 +17,7 @@ venue: "Rex Box, Bern, CH"
 organizer: "VideoCity"
 startDate: 2023.5.4.
 endDate: 2023.5.31.
-link: "https:/www.videocity.org/kino-rex-may-2023"
+link: "https://www.videocity.org/kino-rex-may-2023"
 mapUrl: ""
 etc: []
 image: ""

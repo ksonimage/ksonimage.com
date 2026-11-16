@@ -18,7 +18,7 @@ venue: "BEXCO, Busan"
 organizer: "VideoCity"
 startDate: 2023. 5.4.
 endDate: 2023. 5.7.
-link: "https:/www.videocity.org/art-busan"
+link: "https://www.videocity.org/art-busan"
 mapUrl: ""
 etc: []
 image: "/images/posts/2023-amusement-epitome-art-busan.jpg"

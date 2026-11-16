@@ -17,7 +17,7 @@ venue: "Eyegenart Augenoptik | Eyegenart Augenoptik | Stoff-Galerie"
 organizer: ""
 startDate: 2023.7.15.
 endDate: 2023.10.31.
-link: "https:/www.videocity.org/tuebingen"
+link: "https://www.videocity.org/tuebingen"
 mapUrl: ""
 etc: []
 image: "/images/posts/2023-amusement-epitome-videocity-x-tubingen.jpg"

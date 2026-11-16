@@ -16,7 +16,7 @@ venue: "Feldbergstrasse 42, 4057 Basel"
 organizer: "VideoCity"
 startDate: 2024-08-30
 endDate: 2024-11-03
-link: "https:/www.videocity.org/f42-flower-power"
+link: "https://www.videocity.org/f42-flower-power"
 mapUrl: ""
 etc: []
 image: ""

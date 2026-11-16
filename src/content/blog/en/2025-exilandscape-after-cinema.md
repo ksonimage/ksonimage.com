@@ -20,7 +20,7 @@ venue: "Eulsuk Theater @ Busan Museum of Contemporary Art"
 organizer: ""
 startDate: 2025-11-06
 endDate: 2025-12-28
-link: "https:/www.busan.go.kr/moca\_en/exhibition01/1662167"
+link: "https://www.busan.go.kr/moca\_en/exhibition01/1662167"
 mapUrl: ""
 etc: []
 image: "/images/posts/2025-exilandscape-after-cinemar.jpg"

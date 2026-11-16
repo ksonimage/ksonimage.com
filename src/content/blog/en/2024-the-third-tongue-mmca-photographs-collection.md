@@ -16,7 +16,7 @@ venue: "National Museum of Modern and Contemporary Arts, Gwacheon"
 organizer: "National Museum of Modern and Contemporary Arts"
 startDate: 2024-03-27
 endDate: 2024-08-04
-link: "https:/www.mmca.go.kr/exhibitions/exhibitionsDetail.do?exhFlag=2&exhId=202401150001733"
+link: "https://www.mmca.go.kr/exhibitions/exhibitionsDetail.do?exhFlag=2&exhId=202401150001733"
 mapUrl: ""
 etc: []
 image: "/images/posts/2024-mmca-photographs-collection.jpg"

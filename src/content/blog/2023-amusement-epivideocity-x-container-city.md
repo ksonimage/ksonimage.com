@@ -16,7 +16,7 @@ venue: "Kunstverein Wagenhalle e.V."
 organizer: ""
 startDate: 2023.7.1.
 endDate: 2023.7.2.
-link: "https:/www.videocity.org/stuttgart-wagenhalle"
+link: "https://www.videocity.org/stuttgart-wagenhalle"
 mapUrl: ""
 etc: 
   - "Monitor 1: Abdulnasser Gharem, ETAGE, Zongbo Jiang, Anouk Sebald, 손광주"
