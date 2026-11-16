@@ -3,7 +3,7 @@ title: "Amusement Epitome"
 info: "2018, 실험, HD, 흑백&컬러, 사운드, 11:25"
 layout: "works"
 date: 2019-12-31
-vimeoId: "1203619317"
+vimeoId: "1203619218"
 gallery: 
 - "/images/works/2006-amusement-epitome/2006-amusement-epitome_1.jpg"
 - "/images/works/2006-amusement-epitome/2006-amusement-epitome_2.jpg"

@@ -1,5 +1,5 @@
 ---
-title: "A Room without Mirrors"
+title: "A ROOM WITHOUT MIRRORS"
 info: "2018, Experimental, HD, B&W/Color, Sound, 11:25"
 layout: "works"
 date: 2026-11-09
