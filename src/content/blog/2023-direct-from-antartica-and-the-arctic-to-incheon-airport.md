@@ -19,7 +19,7 @@ organizer: ""
 startDate: 2023.7.26.
 endDate: 2023.11.30.
 link: ""
-mapUrl: ""
+mapUrl: "https://naver.me/54KF62H2"
 etc: []
 image: "/images/posts/2023-direct-from-antarctica-and-the-arctic-to-incheon-airport.jpg"
 gallery: []

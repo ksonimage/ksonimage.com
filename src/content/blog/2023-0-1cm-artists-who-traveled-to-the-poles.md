@@ -16,7 +16,7 @@ organizer: "한국문화예술위원회, 극지연구소 (후원: 문화체육�
 startDate: 2023-06-07
 endDate: 2023-07-07
 link: ""
-mapUrl: ""
+mapUrl: "https://naver.me/FJbWkF2j"
 etc:
   - "관람시간: 화~토 10:30~17:30"
   - "휴관일: 매주 일요일, 월요일"

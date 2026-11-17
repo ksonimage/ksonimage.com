@@ -17,7 +17,7 @@ organizer: ""
 startDate: 2023-12-04
 endDate: 2023-12-30
 link: "https://ksonimage.com/citizenk"
-mapUrl: ""
+mapUrl: "https://naver.me/xgNy2UzD"
 etc: []
 image: "/images/posts/2023-a-portrait-of-citizen-k-mmca-changdong-poster.jpg"
 gallery:

@@ -19,8 +19,8 @@ venue: "글렌피딕 아티스트-인-레지던시 갤러리"
 organizer: ""
 startDate: 2025.8.23.
 endDate: 2025.9.28.
-link: ""
-mapUrl: ""
+link: "https://www.glenfiddich.com/"
+mapUrl: "https://maps.app.goo.gl/TNwznv4dr7CSGtCt5"
 etc: []
 image: "/images/posts/2025-artists-at-glenfiddich.jpg"
 gallery: []

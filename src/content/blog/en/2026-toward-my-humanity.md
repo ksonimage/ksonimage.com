@@ -21,7 +21,7 @@ organizer: ""
 startDate: 2026. 5. 30. 
 endDate: 2026. 7. 11. 
 link: "https://artmoment.org/%eb%82%98%ec%9d%98%ec%9d%b8%eb%a5%98/"
-mapUrl: ""
+mapUrl: "https://naver.me/xBwLgWiO"
 etc: []
 image: "/images/posts/2026-toward-my-humanity.jpg"
 gallery: 

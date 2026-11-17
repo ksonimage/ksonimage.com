@@ -20,7 +20,7 @@ organizer: "연수문화재단"
 startDate: 2023.5.30.  
 endDate: 2023.7.16.
 link: "http://www.ysfac.or.kr/user/cultural/events_view.php?sq=189&search="
-mapUrl: ""
+mapUrl: "https://naver.me/5ZJMBXl9"
 etc: ["전시협조 : 국립현대미술관 작품보존미술은행관리과"]
 image: "/images/posts/2023-extra-contrast-porsche-and-dump-truck.jpg"
 gallery: []

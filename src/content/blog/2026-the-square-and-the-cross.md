@@ -20,11 +20,15 @@ venue: "Haus für Medienkunst Oldenburg"
 organizer: "Haus für Medienkunst Oldenburg, 니더작센 재단"
 startDate: 2026-10-14
 endDate: 2027-01-10
-link: "https://example.com"
-mapUrl: "https://map.naver.com"
-etc:
-  - "info@hausmedienkunst.de"
-  - "Opening hours during the exhibitions Tuesday – Friday 2-6 pm Saturday – Sunday 11 am – 6 pm Closed on Monday Public holidays 11 am – 6 pm"
+link: "https://hausmedienkunst.de"
+mapUrl: "https://maps.app.goo.gl/Y9Y6farHjpoyCMrg8m"
+etc: |
+  - info@hausmedienkunst.de
+  - Opening hours during the exhibitions
+  - Tuesday – Friday 2-6 pm 
+  - Saturday – Sunday 11 am – 6 pm 
+  - Closed on Monday
+  - Public holidays 11 am – 6 pm
 image: "/images/posts/2026-the-square-and-the-cross.jpg"
 gallery:
   - "/images/works/2026-the-holy-city/2026-the-holy-city-01.jpg"
@@ -50,4 +54,4 @@ draft: false
 
 손광주는 여러 작품을 통해 하나의 섬뜩할 만큼 선명한 초상으로 되돌아온다. 그것은 불확실한 미래를 향해 조용하고 헌신적으로 노력하는 ‘체제 순응적 인간들’의 사회다. 이러한 초상에는 어떠한 판단도 담겨 있지 않다. 오히려 작가가 관찰하는 세계를 향한 연민, 그 세계를 보듬는 다정한 시선이 작업을 움직이는 동력이 된다. 작가는 또한 서로 다른 시간성이 서로에게 스며드는 방식에도 깊은 관심을 기울인다. 사람들은 과거의 구조와 욕망을 현재로 이어 나가는 동시에, 자신도 모르는 사이에 자신이 볼 수 없는 지평을 향해 이끌려 간다. 관찰과 사변 사이를 오가는 손광주의 시적인 영화 작업은 집단적 정동과 신념, 기억이 어떻게 이미지와 사회적 형태 속에 응결되는지를 탐구한다.
 
-**출처**: [e-flux](https:/www.e-flux.com/announcements/6785726/kwang-ju-son-and-yehwan-songthe-square-and-the-cross?fbclid=PAZXh0bgNhZW0CMTEAcGRvZgRzcnRjBmFwcF9pZAwyNTYyODEwNDA1NTgAAad53WgMdltNdxFTIFUsQTaA_bZLdOdzZp-5ajzFj8R_VgkZ0fD9Pn8KD5zqHw_aem_KDZ-H6xS-1jRfy75DgzBLQ)
+**출처**: [e-flux](https://www.e-flux.com/announcements/6785726/kwang-ju-son-and-yehwan-songthe-square-and-the-cross?fbclid=PAZXh0bgNhZW0CMTEAcGRvZgRzcnRjBmFwcF9pZAwyNTYyODEwNDA1NTgAAad53WgMdltNdxFTIFUsQTaA_bZLdOdzZp-5ajzFj8R_VgkZ0fD9Pn8KD5zqHw_aem_KDZ-H6xS-1jRfy75DgzBLQ)

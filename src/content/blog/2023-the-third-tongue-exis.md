@@ -18,7 +18,7 @@ organizer: "EXiS"
 startDate: 2023.7.20.
 endDate: 2023.7.27.
 link: ""
-mapUrl: ""
+mapUrl: "https://naver.me/Gj6XOfXz"
 etc: []
 image: "/images/posts/2023-exis.jpg"
 gallery: []

@@ -15,7 +15,7 @@ organizer: ""
 startDate: 2024-11-20
 endDate: 2024-12-19
 link: "https://ksonimage.com/exilandscape"
-mapUrl: "https://artspace3.com/historic-site-exhibition-room"
+mapUrl: "https://naver.me/G58GrBS3"
 etc:
   - "관람시간: 10:30~18:00"
   - "휴관일: 매주 일요일, 월요일"

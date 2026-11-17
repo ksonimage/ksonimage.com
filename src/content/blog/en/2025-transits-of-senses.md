@@ -18,7 +18,7 @@ organizer: "Art Center White Block"
 startDate: 2025. 12. 6.
 endDate: 2026. 2. 22.
 link: "https://whiteblock.org/%EC%A0%84%EC%8B%9C/view/5782116"
-mapUrl: ""
+mapUrl: "https://naver.me/Fy2FMVoX"
 etc: []
 image: "/images/posts/2025-transits-of-senses.jpg"
 gallery:

@@ -15,7 +15,7 @@ organizer: "AA SeMA"
 startDate: 2024-08-29
 endDate: 2025-02-02
 link: "https://sema.seoul.go.kr/semaaa/front/info/sub0604.jsp?menuId=26"
-mapUrl: "https://sema.seoul.go.kr/semaaa/front/info/sub0604.jsp?menuId=26"
+mapUrl: "https://naver.me/5r9zserd"
 etc:
   - "전시장소: 모음동 1층 라운지 1, 전시실 1, 전시실 2"
   - "주소: 서울시 종로구 평창문화로 101"

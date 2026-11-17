@@ -18,7 +18,7 @@ organizer: "아트센터 화이트블럭"
 startDate: 2025. 12. 6.
 endDate: 2026. 2. 22.
 link: "https://whiteblock.org/%EC%A0%84%EC%8B%9C/view/5782116"
-mapUrl: ""
+mapUrl: "https://naver.me/Fy2FMVoX"
 etc: 
   - "참여작가 : 김민혜, 손광주, 신재은, 유비호, 이소요, 임선이, 장보윤, 정수, 한수지"
   - "관람시간 : 11:00 - 18:30 | 입장 마감 18:00 / 연중무휴"

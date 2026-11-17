@@ -58,24 +58,35 @@ if (post) {
 
 const postData = post?.data || {};
 
-// 필드 바인딩
+// 배열(- )과 여러 줄 문자열(|)을 모두 배열로 통일하는 헬퍼 함수
+const toArray = (val: any): string[] => {
+  if (Array.isArray(val)) return val.map((v) => String(v).trim()).filter(Boolean);
+  if (typeof val === "string") {
+    return val
+      .split(/\r?\n/)
+      .map((line) => line.trim())
+      .filter((line) => line.length > 0);
+  }
+  return [];
+};
+
+// 필드 바인딩 (모든 리스트 필드에 toArray 일괄 적용)
 const rawTitle = String(postData.title || "");
 const author = String(postData.author || "");
 const image = String(postData.image || "");
-const gallery = Array.isArray(postData.gallery) ? postData.gallery : [];
+const gallery = toArray(postData.gallery);
 const date = postData.date || postData.pubDate;
 const startDate = postData.startDate;
 const endDate = postData.endDate;
 const venue = String(postData.venue || "");
-const artistList = Array.isArray(postData.artist) ? postData.artist : [];
+const artistList = toArray(postData.artist);
 const organizer = String(postData.organizer || "");
 const link = String(postData.link || "");
 const mapUrl = String(postData.mapUrl || "");
-const etcList = Array.isArray(postData.etc) ? postData.etc : [];
-const typesList = Array.isArray(postData.types) ? postData.types : [];
-const categoriesList = Array.isArray(postData.categories) ? postData.categories : [];
-const tagsList = Array.isArray(postData.tags) ? postData.tags : [];
-
+const etcList = toArray(postData.etc);
+const typesList = toArray(postData.types);
+const categoriesList = toArray(postData.categories);
+const tagsList = toArray(postData.tags);
 const plainTitle = rawTitle.replace(/["'\\`]/g, "").replace(/[\r\n]+/g, " ").trim();
 
 // YYYY-MM-DD 포맷 적용
@@ -205,14 +216,14 @@ const hasContent = Boolean(ContentComponent);
               {venue && (
                 <div>
                   <span class="block text-xs uppercase tracking-wider text-gray-400 mb-0.5">{labels.venue}</span>
-                  <div class="flex items-center gap-2">
-                    <p class="font-medium text-gray-900">{venue}</p>
+                  <div class="flex items-start gap-2">
+                    <p class="font-medium text-gray-900 whitespace-pre-line">{venue}</p>
                     {mapUrl && (
                       <a
                         href={mapUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        class="inline-flex items-center gap-1 text-xs text-black underline underline-offset-2 hover:opacity-60 shrink-0"
+                        class="inline-flex items-center gap-1 text-xs text-black underline underline-offset-2 hover:opacity-60 shrink-0 mt-0.5"
                       >
                         <FaMapMarkerAlt class="text-[10px]" /> {labels.map}
                       </a>
@@ -233,7 +244,7 @@ const hasContent = Boolean(ContentComponent);
               {organizer && (
                 <div>
                   <span class="block text-xs uppercase tracking-wider text-gray-400 mb-0.5">{labels.organizer}</span>
-                  <p class="font-medium text-gray-900">{organizer}</p>
+                  <p class="font-medium text-gray-900 whitespace-pre-line">{organizer}</p>
                 </div>
               )}
 
@@ -336,14 +347,14 @@ const hasContent = Boolean(ContentComponent);
             {venue && (
               <div>
                 <span class="block text-xs uppercase tracking-wider text-gray-400 mb-0.5">{labels.venue}</span>
-                <div class="flex items-center gap-2">
-                  <p class="font-medium text-gray-900">{venue}</p>
+                <div class="flex items-start gap-2">
+                  <p class="font-medium text-gray-900 whitespace-pre-line">{venue}</p>
                   {mapUrl && (
                     <a
                       href={mapUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      class="inline-flex items-center gap-1 text-xs text-black underline underline-offset-2 hover:opacity-60 shrink-0"
+                      class="inline-flex items-center gap-1 text-xs text-black underline underline-offset-2 hover:opacity-60 shrink-0 mt-0.5"
                     >
                       <FaMapMarkerAlt class="text-[10px]" /> {labels.map}
                     </a>
@@ -364,7 +375,7 @@ const hasContent = Boolean(ContentComponent);
             {organizer && (
               <div>
                 <span class="block text-xs uppercase tracking-wider text-gray-400 mb-0.5">{labels.organizer}</span>
-                <p class="font-medium text-gray-900">{organizer}</p>
+                <p class="font-medium text-gray-900 whitespace-pre-line">{organizer}</p>
               </div>
             )}
 

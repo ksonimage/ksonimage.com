@@ -21,7 +21,7 @@ organizer: "Haus für Medienkunst Oldenburg, 니더작센 재단"
 startDate: 2026-10-14
 endDate: 2027-01-10
 link: "https://hausmedienkunst.de"
-mapUrl: ""
+mapUrl: "https://maps.app.goo.gl/Y9Y6farHjpoyCMrg8m"
 etc:
   - "info@hausmedienkunst.de"
   - "Opening hours during the exhibitions Tuesday – Friday 2-6 pm Saturday – Sunday 11 am – 6 pm Closed on Monday Public holidays 11 am – 6 pm"

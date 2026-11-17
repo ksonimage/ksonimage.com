@@ -20,7 +20,7 @@ organizer: "청주시립대청호미술관"
 startDate: 2023-11-07
 endDate: 2024-03-03
 link: "https://cmoa.cheongju.go.kr/daecheongho/index.do"
-mapUrl: ""
+mapUrl: "https://naver.me/G1wl8T9G"
 etc: []
 image: "/images/posts/2023-narratives-for-nature-regarding-nature.jpg"
 gallery: []

@@ -21,9 +21,15 @@ organizer: ""
 startDate: 2025-11-06
 endDate: 2025-12-28
 link: "https://www.busan.go.kr/moca\_en/exhibition01/1662167"
-mapUrl: ""
+mapUrl: "https://naver.me/Fuz5Lxqk"
 etc: []
 image: "/images/posts/2025-exilandscape-after-cinemar.jpg"
 gallery: []
 draft: false
 ---
+### Foreword
+
+2025 BusanMoCA Cinemedia_ After Cinema explores how today’s cinema evolves into “other forms of cinema” at the intersection of media hybridity, historical legacy, and technological environments.
+
+For more information:
+\- [https://www.busan.go.kr/comm/getFile?srvcId=MEDIA&upperNo=22328&fileTy=MEDIA&fileNo=1](https://www.busan.go.kr/comm/getFile?srvcId=MEDIA&upperNo=22328&fileTy=MEDIA&fileNo=1)

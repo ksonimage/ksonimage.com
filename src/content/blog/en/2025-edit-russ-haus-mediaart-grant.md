@@ -16,8 +16,8 @@ venue: ""
 organizer: ""
 startDate: 2025-05-28
 endDate: 2025-05-28
-link: ""
-mapUrl: ""
+link: "https://www.hausmedienkunst.de"
+mapUrl: "https://maps.app.goo.gl/Y9Y6farHjpoyCMrg8m"
 etc: []
 image: ""
 gallery: []
@@ -34,6 +34,6 @@ The Lower Saxony Media Art Grant supports a wide range of media art every year, 
 **Nikolett Eross** (OFF-Biennial Budapest), **Annie Fletcher** (Irish Museum of Modern Art), **Edit Molnár** (HAUS), **Marcel Schwierin** (HAUS).
 
 For more information:  
-\- [https:/www.hausmedienkunst.de/en/about/grants](https:/www.hausmedienkunst.de/en/about/grants)  
-\- [The Haus für Medienkunst Oldenburg](https:/www.hausmedienkunst.de/en/)
+\- [https://www.hausmedienkunst.de/en/about/grants](https://www.hausmedienkunst.de/en/about/grants)  
+\- [The Haus für Medienkunst Oldenburg](https://www.hausmedienkunst.de/en/)
 

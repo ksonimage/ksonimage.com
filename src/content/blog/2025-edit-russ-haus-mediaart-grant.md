@@ -16,8 +16,8 @@ venue: ""
 organizer: ""
 startDate: 2025-05-28
 endDate: 2025-05-28
-link: ""
-mapUrl: ""
+link: "https://www.hausmedienkunst.de"
+mapUrl: "https://maps.app.goo.gl/Y9Y6farHjpoyCMrg8m"
 etc: []
 image: ""
 gallery: []
@@ -33,6 +33,6 @@ draft: false
 **Nikolett Eross** (OFF-Biennial Budapest), **Annie Fletcher** (Irish Museum of Modern Art), **Edit Molnár** (HAUS), **Marcel Schwierin** (HAUS).
 
 보다 자세한 사항은 다음 링크를 참조하시기 바랍니다:  
-\- [https:/www.hausmedienkunst.de/en/about/grants](https:/www.hausmedienkunst.de/en/about/grants)  
-\- [The Haus für Medienkunst Oldenburg](https:/www.hausmedienkunst.de/en/)
+\- [https://www.hausmedienkunst.de/en/about/grants](https://www.hausmedienkunst.de/en/about/grants)  
+\- [The Haus für Medienkunst Oldenburg](https://www.hausmedienkunst.de/en/)
 
