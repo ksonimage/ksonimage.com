@@ -14,7 +14,7 @@ tags:
   - "손광주-감독"
   - "손광주-작가"
   - "흩어진-생각-조합된-경험"
-venue: "단원미술관"
+venue: "Danwon Museum of Art"
 organizer: ""
 startDate: 2019.12.13.
 endDate: 2020.3.1. 

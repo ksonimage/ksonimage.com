@@ -1,5 +1,5 @@
 ---
-title: "Kwang-Ju Son"
+title: "KWANG–JU SON"
 meta_title: "Artist"
 description: ""
 image: ""

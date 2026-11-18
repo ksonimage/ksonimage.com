@@ -24,7 +24,6 @@
 html, body, *, h1, h2, h3, h4, h5, h6, p, a, span {
   font-family: var(--font-primary);
 }
-
 h2, h3, h4 {
   font-weight: 200 !important; /* 굵기를 강제로 가장 얇게 지정 */
   letter-spacing: 0em;       /* 자간을 늘려 얇은 느낌 강조 */
