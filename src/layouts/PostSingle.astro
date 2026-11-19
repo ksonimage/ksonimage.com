@@ -3,7 +3,7 @@ import BlogCard from "@/components/BlogCard.astro";
 import ImageMod from "@/components/ImageMod.astro";
 import { getSinglePage } from "@/lib/contentParser.astro";
 import similarItems from "@/lib/utils/similarItems";
-import { humanize, slugify } from "@/lib/utils/textConverter";
+import { humanize, slugify, markdownify } from "@/lib/utils/textConverter";
 import { render } from "astro:content";
 import { FaRegClock, FaMapMarkerAlt, FaExternalLinkAlt } from "react-icons/fa";
 
@@ -22,8 +22,8 @@ const labels = {
   venue: isEnPage ? "Venue" : "장소",
   artist: isEnPage ? "Artist" : "참여 작가",
   organizer: isEnPage ? "Organizer" : "주최",
-  note: isEnPage ? "Note" : "기타",
-  website: isEnPage ? "More info." : "상세정보",
+  note: isEnPage ? "Info." : "개요",
+  website: isEnPage ? "Website" : "웹사이트",
   posted: isEnPage ? "Posted" : "게시일",
   map: "Map"
 };
@@ -84,6 +84,9 @@ const organizer = String(postData.organizer || "");
 const link = String(postData.link || "");
 const mapUrl = String(postData.mapUrl || "");
 const etcList = toArray(postData.etc);
+const etcRaw = Array.isArray(postData.etc)
+  ? postData.etc.map((v: any) => `- ${String(v).trim()}`).join("\n")
+  : String(postData.etc || "").trim();
 const typesList = toArray(postData.types);
 const categoriesList = toArray(postData.categories);
 const tagsList = toArray(postData.tags);
@@ -248,21 +251,16 @@ const hasContent = Boolean(ContentComponent);
                 </div>
               )}
 
-              {/* 6. 참고 사항 */}
-              {etcList.length > 0 && (
-                <div>
-                  <span class="block text-xs uppercase tracking-wider text-gray-400 mb-1">{labels.note}</span>
-                  <ul class="space-y-1 text-xs text-gray-700 whitespace-pre-line font-sans">
-                    {etcList.map((item: string) => (
-                      <li class="flex items-start gap-1.5">
-                        <span class="text-black font-bold">•</span>
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-
+{/* 6. 참고 사항 - 수정 */}
+{etcRaw && (
+  <div>
+    <span class="block text-xs uppercase tracking-wider text-gray-400 mb-1">{labels.note}</span>
+    <div
+      class="text-normal text-gray-900 font-sans leading-relaxed space-y-2 [&_ul]:list-disc [&_ul]:pl-4 [&_ul]:space-y-1 [&_ol]:list-decimal [&_ol]:pl-4 [&_strong]:font-semibold [&_strong]:text-gray-900 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:opacity-60"
+      set:html={markdownify(etcRaw, true)}
+    />
+  </div>
+)}
               {/* 7. 공식 웹사이트 */}
               {link && (
                 <div class="pt-1">
@@ -379,20 +377,16 @@ const hasContent = Boolean(ContentComponent);
               </div>
             )}
 
-            {/* 6. 참고 사항 */}
-            {etcList.length > 0 && (
-              <div>
-                <span class="block text-xs uppercase tracking-wider text-gray-400 mb-1">{labels.note}</span>
-                <ul class="space-y-1 text-xs text-gray-700 whitespace-pre-line font-sans">
-                  {etcList.map((item: string) => (
-                    <li class="flex items-start gap-1.5">
-                      <span class="text-black font-bold">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            )}
+{/* 6. 참고 사항 - 수정 */}
+{etcRaw && (
+  <div>
+    <span class="block text-xs uppercase tracking-wider text-gray-400 mb-1">{labels.note}</span>
+    <div
+      class="text-normal text-gray-900 font-sans leading-relaxed space-y-2 [&_ul]:list-disc [&_ul]:pl-4 [&_ul]:space-y-1 [&_ol]:list-decimal [&_ol]:pl-4 [&_strong]:font-semibold [&_strong]:text-gray-900 [&_a]:underline [&_a]:underline-offset-2 hover:[&_a]:opacity-60"
+      set:html={markdownify(etcRaw, true)}
+    />
+  </div>
+)}
 
             {/* 7. 공식 웹사이트 */}
             {link && (
