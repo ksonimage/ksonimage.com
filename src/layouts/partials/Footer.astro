@@ -3,14 +3,23 @@ import Social from "@/components/Social.astro";
 import config from "@/config/config.json";
 import social from "@/config/social.json";
 import { markdownify } from "@/lib/utils/textConverter";
+
+const { pathname } = Astro.url;
+const isEnPage = pathname === "/en" || pathname.startsWith("/en/");
+
+const localizedSocial = social.main.map((item) =>
+  item.link === "/contact" || item.link === "/contact"
+    ? { ...item, link: isEnPage ? "/en/contact" : "/contact" }
+    : item
+);
 ---
 
 <footer class="bg-white">
   <div class="container py-7 flex flex-col sm:flex-row items-center justify-between gap-4 text-text-dark">
     <p set:html={markdownify(config.params.copyright)} />
-<Social
-  source={social.main}
-  className="flex items-center gap-5 text-lg text-neutral-700 [&_li]:inline-block [&_a]:transition-opacity [&_a:hover]:opacity-50"
-/>
+    <Social
+      source={localizedSocial}
+      className="flex items-center gap-5 text-lg text-neutral-700 [&_li]:inline-block [&_a]:transition-opacity [&_a:hover]:opacity-50"
+    />
   </div>
 </footer>
