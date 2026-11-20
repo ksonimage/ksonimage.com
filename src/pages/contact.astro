@@ -12,6 +12,12 @@ const buildDrafts = process.argv.includes("--buildDrafts");
 if (!buildDrafts && contactIndex.data.draft) {
   return Astro.redirect("/404");
 }
+
+// 👉 노출할 이메일이 있으면 입력 (비워두면 1행 좌측 Direct Email 항목이 자동으로 숨겨집니다)
+const CONTACT_EMAIL = "";
+
+// 👉 Mailchimp Action URL
+const MAILCHIMP_ACTION = "https://ksonimage.us10.list-manage.com/subscribe/post?u=83f4e325e506570a2d93302f6&id=6968b4186e&f_id=003455e4f0";
 ---
 
 <Base
@@ -21,61 +27,185 @@ if (!buildDrafts && contactIndex.data.draft) {
   image={image}
 >
   <PageHeader title={title} />
-  <section class="section-sm">
-    <div class="container">
-      <div class="row">
-        <div class="max-w-lg mr-auto ml-0 text-left">
-          <form id="contact-form" action={contact_form_action} method="POST">
-            <div class="mb-6">
-              <label for="name" class="form-label">
-                이름 <span class="text-red-500">*</span>
-              </label>
-              <input
-                id="name"
-                name="name"
-                class="form-input"
-                placeholder="이름"
-                type="text"
-                required
-              />
+
+  <section class="text-gray-900 body-font w-full">
+    <div class="container px-5 pt-10 pb-24 mx-auto space-y-20">
+
+      {/* 1. [1행] Inquiries: 1열(부제목/설명) | 2~3열(Formspree 문의 폼) | 4열(여백) */}
+      <div class="grid grid-cols-1 lg:grid-cols-4 gap-y-8 lg:gap-x-10">
+        <aside class="lg:col-span-1">
+          <div class="space-y-6 lg:pr-4">
+            <div>
+              <h2 class="text-xs font-mono uppercase tracking-widest text-gray-900 mb-3">
+                문의사항
+              </h2>
+              <p class="text-xs text-gray-800 font-sans leading-relaxed">
+                전시, 상영, 스크리너 요청 및 협업 관련 문의는 오른쪽 양식을 통해 남겨주세요.
+              </p>
             </div>
-            <div class="mb-6">
-              <label for="email" class="form-label">
-                이메일 <span class="text-red-500">*</span>
-              </label>
-              <input
-                id="email"
-                name="email"
-                class="form-input"
-                placeholder="john.doe@email.com"
-                type="email"
-                required
-              />
+
+            {CONTACT_EMAIL && (
+              <div class="pt-2">
+                <span class="block text-[11px] font-mono uppercase tracking-wider text-gray-400 mb-1">
+                  Direct Email
+                </span>
+                <a
+                  href={`mailto:${CONTACT_EMAIL}`}
+                  class="text-xs font-mono text-gray-900 border-b border-gray-300 pb-0.5 hover:border-black transition-colors"
+                >
+                  {CONTACT_EMAIL}
+                </a>
+              </div>
+            )}
+          </div>
+        </aside>
+
+        <div class="lg:col-span-2">
+          <form id="contact-form" action={contact_form_action} method="POST" class="space-y-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+              <div>
+                <label
+                  for="name"
+                  class="block text-xs font-mono uppercase tracking-wider text-neutral-800 mb-2"
+                >
+                  이름 <span class="text-gray-900">*</span>
+                </label>
+                <input
+                  id="name"
+                  name="name"
+                  type="text"
+                  required
+                  placeholder="이름 또는 소속"
+                  class="w-full bg-transparent border-0 border-b border-gray-700 px-0 py-2.5 text-sm text-gray-900 placeholder-gray-300 focus:border-black focus:ring-0 focus:outline-none transition-colors rounded-none"
+                />
+              </div>
+
+              <div>
+                <label
+                  for="email"
+                  class="block text-xs font-mono uppercase tracking-wider text-neutral-800 mb-2"
+                >
+                  이메일 <span class="text-gray-900">*</span>
+                </label>
+                <input
+                  id="email"
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="name@example.com"
+                  class="w-full bg-transparent border-0 border-b border-gray-700 px-0 py-2.5 text-sm text-gray-900 placeholder-gray-300 focus:border-black focus:ring-0 focus:outline-none transition-colors rounded-none"
+                />
+              </div>
             </div>
-            <div class="mb-6">
-              <label for="message" class="form-label">
-                문의사항 <span class="text-red-500">*</span>
+
+            <div>
+              <label
+                for="message"
+                class="block text-xs font-mono uppercase tracking-wider text-neutral-800 mb-2"
+              >
+                문의사항 <span class="text-gray-900">*</span>
               </label>
               <textarea
                 id="message"
                 name="message"
-                class="form-input"
-                placeholder="문의내용 입력..."
+                rows="6"
                 required
-                rows="8"></textarea>
+                placeholder="문의 내용을 입력해 주세요."
+                class="w-full bg-transparent border-0 border-b border-gray-700 px-0 py-2.5 text-sm text-gray-900 placeholder-gray-300 focus:border-black focus:ring-0 focus:outline-none transition-colors resize-y rounded-none leading-relaxed"
+              ></textarea>
             </div>
-            <button id="submit-btn" type="submit" class="btn btn-primary">
-              보내기
-            </button>
-            <p id="form-status" class="mt-4 hidden text-sm font-medium"></p>
+
+            <div class="pt-2 flex items-center gap-4">
+              <button
+                id="submit-btn"
+                type="submit"
+                class="px-7 py-3 text-xs font-mono uppercase tracking-widest border border-black bg-black text-white hover:bg-white hover:text-black transition-colors cursor-pointer rounded-none"
+              >
+                보내기
+              </button>
+              <p id="form-status" class="hidden text-xs font-sans"></p>
+            </div>
           </form>
         </div>
+
+        {/* 4열: 의도적 빈 여백 */}
+        <div class="hidden lg:block lg:col-span-1" aria-hidden="true"></div>
       </div>
+
+      {/* 2. [2행] Mailing List: 1~3열 전체 배경 박스(내부 1:2 그리드) | 4열(여백) */}
+      <div id="newsletter" class="grid grid-cols-1 lg:grid-cols-4 gap-y-8 lg:gap-x-10 scroll-mt-12">
+        <div class="lg:col-span-3 bg-neutral-0 px-6 py-8 sm:px-8 sm:py-10">
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-y-8 lg:gap-x-10 items-start">
+            <aside class="lg:col-span-1">
+              <div class="lg:pr-4">
+                <h2 class="text-xs font-mono uppercase tracking-widest text-gray-900 mb-3">
+                  뉴스레터
+                </h2>
+                <p class="text-xs text-gray-700 font-sans leading-relaxed">
+                  새 전시, 상영 일정 및 아카이브 소식을 이메일로 받아보실 수 있습니다.
+                </p>
+              </div>
+            </aside>
+
+            <div class="lg:col-span-2">
+              <form
+                id="newsletter-form"
+                action={MAILCHIMP_ACTION}
+                method="post"
+                class="flex flex-col sm:flex-row items-stretch sm:items-end gap-5"
+              >
+                <div class="sm:w-1/3">
+                  <label for="mce-MMERGE3" class="sr-only">이름</label>
+                  <input
+                    id="mce-MMERGE3"
+                    type="text"
+                    name="MMERGE3"
+                    required
+                    placeholder="이름"
+                    class="w-full bg-transparent border-0 border-b border-gray-700 px-0 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-black focus:ring-0 focus:outline-none transition-colors rounded-none"
+                  />
+                </div>
+
+                <div class="flex-1">
+                  <label for="mce-EMAIL" class="sr-only">이메일 주소</label>
+                  <input
+                    id="mce-EMAIL"
+                    type="email"
+                    name="EMAIL"
+                    required
+                    placeholder="이메일"
+                    class="w-full bg-transparent border-0 border-b border-gray-700 px-0 py-2.5 text-sm text-gray-900 placeholder-gray-400 focus:border-black focus:ring-0 focus:outline-none transition-colors rounded-none"
+                  />
+                </div>
+
+                {/* Mailchimp 스팸 방지용 공식 숨김 필드 */}
+                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                  <input type="text" name="b_83f4e325e506570a2d93302f6_6968b4186e" tabindex="-1" value="" />
+                </div>
+
+                <button
+                  id="mc-submit-btn"
+                  type="submit"
+                  class="px-6 py-2.5 text-xs font-mono uppercase tracking-widest border border-black text-black hover:bg-black hover:text-white transition-colors cursor-pointer shrink-0 rounded-none"
+                >
+                  구독하기
+                </button>
+              </form>
+              <p id="mc-status" class="hidden mt-3 text-xs font-sans"></p>
+            </div>
+          </div>
+        </div>
+
+        {/* 4열: 의도적 빈 여백 */}
+        <div class="hidden lg:block lg:col-span-1" aria-hidden="true"></div>
+      </div>
+
     </div>
   </section>
 </Base>
 
 <script>
+  // 1. Formspree 문의 폼 초기화
   function initContactForm() {
     const form = document.getElementById("contact-form") as HTMLFormElement | null;
     const submitBtn = document.getElementById("submit-btn") as HTMLButtonElement | null;
@@ -90,7 +220,7 @@ if (!buildDrafts && contactIndex.data.draft) {
       submitBtn.disabled = true;
       submitBtn.textContent = "전송 중...";
       status.classList.add("hidden");
-      status.classList.remove("text-red-500", "text-green-600", "dark:text-green-400");
+      status.classList.remove("text-red-600", "text-gray-900");
 
       try {
         const response = await fetch(form.action, {
@@ -101,17 +231,17 @@ if (!buildDrafts && contactIndex.data.draft) {
 
         status.classList.remove("hidden");
         if (response.ok) {
-          status.textContent = "메시지가 성공적으로 전송되었습니다. 감사합니다!";
-          status.classList.add("text-green-600", "dark:text-green-400");
+          status.textContent = "메시지가 전송되었습니다. 감사합니다.";
+          status.classList.add("text-gray-900");
           form.reset();
         } else {
           status.textContent = "전송에 실패했습니다. 잠시 후 다시 시도해 주세요.";
-          status.classList.add("text-red-500");
+          status.classList.add("text-red-600");
         }
       } catch {
         status.classList.remove("hidden");
         status.textContent = "네트워크 오류가 발생했습니다. 연결을 확인해 주세요.";
-        status.classList.add("text-red-500");
+        status.classList.add("text-red-600");
       } finally {
         submitBtn.disabled = false;
         submitBtn.textContent = "보내기";
@@ -119,6 +249,73 @@ if (!buildDrafts && contactIndex.data.draft) {
     });
   }
 
+  // 2. Mailchimp 메일링리스트 제자리 구독(JSONP) 초기화
+  function initNewsletterForm() {
+    const form = document.getElementById("newsletter-form") as HTMLFormElement | null;
+    const submitBtn = document.getElementById("mc-submit-btn") as HTMLButtonElement | null;
+    const status = document.getElementById("mc-status");
+    const nameInput = document.getElementById("mce-MMERGE3") as HTMLInputElement | null;
+    const emailInput = document.getElementById("mce-EMAIL") as HTMLInputElement | null;
+
+    if (!form || !submitBtn || !status || !nameInput || !emailInput) return;
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const actionUrl = form.getAttribute("action") || "";
+      submitBtn.disabled = true;
+      submitBtn.textContent = "처리 중...";
+      status.classList.add("hidden");
+      status.classList.remove("text-red-600", "text-gray-900");
+
+      const jsonUrl = actionUrl.replace("/post?", "/post-json?");
+      const callbackName = "mcCallback_" + Date.now();
+      const mmerge3 = encodeURIComponent(nameInput.value.trim());
+      const email = encodeURIComponent(emailInput.value.trim());
+
+      (window as any)[callbackName] = (res: any) => {
+        delete (window as any)[callbackName];
+        script.remove();
+        submitBtn.disabled = false;
+        submitBtn.textContent = "구독하기";
+        status.classList.remove("hidden");
+
+        if (res.result === "success") {
+          status.textContent = "메일링리스트 구독이 완료되었습니다. 감사합니다.";
+          status.classList.add("text-gray-900");
+          form.reset();
+        } else {
+          const tempDiv = document.createElement("div");
+          tempDiv.innerHTML = String(res.msg || "구독 처리 중 오류가 발생했습니다.");
+          const cleanMsg = (tempDiv.textContent || tempDiv.innerText || "").replace(/^\d+\s*-\s*/, "").trim();
+
+          status.textContent = cleanMsg.includes("already subscribed")
+            ? "이미 구독 중인 이메일 주소입니다."
+            : cleanMsg;
+          status.classList.add("text-red-600");
+        }
+      };
+
+      const script = document.createElement("script");
+      script.src = `${jsonUrl}&MMERGE3=${mmerge3}&EMAIL=${email}&c=${callbackName}`;
+      script.onerror = () => {
+        delete (window as any)[callbackName];
+        script.remove();
+        submitBtn.disabled = false;
+        submitBtn.textContent = "구독하기";
+        status.classList.remove("hidden");
+        status.textContent = "브라우저 차단 기능 또는 로컬 환경으로 인해 연결이 제한되었습니다.";
+        status.classList.add("text-red-600");
+      };
+      document.body.appendChild(script);
+    });
+  }
+
   initContactForm();
-  document.addEventListener("astro:after-swap", initContactForm);
+  initNewsletterForm();
+  document.addEventListener("astro:after-swap", () => {
+    initContactForm();
+    initNewsletterForm();
+  });
 </script>
+
