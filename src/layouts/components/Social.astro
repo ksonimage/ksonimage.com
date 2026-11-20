@@ -11,18 +11,22 @@ export interface ISocial {
 
 <ul class={className}>
   {
-    source.map((social: ISocial) => (
-      <li>
-        <a
-          aria-label={social.name}
-          href={social.link}
-          target="_blank"
-          rel="noopener noreferrer nofollow"
-        >
-          <span class="sr-only">{social.name}</span>
-          <DynamicIcon className="inline-block" icon={social.icon} />
-        </a>
-      </li>
-    ))
+    source.map((social: ISocial) => {
+      const isInternal = social.link.startsWith("/") || social.link.startsWith("#");
+
+      return (
+        <li>
+          <a
+            aria-label={social.name}
+            href={social.link}
+            target={isInternal ? undefined : "_blank"}
+            rel={isInternal ? undefined : "noopener noreferrer nofollow"}
+          >
+            <span class="sr-only">{social.name}</span>
+            <DynamicIcon className="inline-block" icon={social.icon} />
+          </a>
+        </li>
+      );
+    })
   }
 </ul>
