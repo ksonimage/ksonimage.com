@@ -1,0 +1,136 @@
+---
+// src/components/PdfLightbox.astro
+interface Props {
+  targetId?: string;
+}
+
+const { targetId = "text-content" } = Astro.props;
+---
+
+<div
+  id="pdf-lightbox"
+  data-target-id={targetId}
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/65 backdrop-blur-[2px] p-4 sm:p-8"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="pdf-lightbox-title"
+>
+  <div class="relative flex flex-col w-full max-w-5xl h-[88vh] bg-white border border-gray-900 shadow-2xl">
+    {/* 상단 바 */}
+    <div class="flex items-center justify-between gap-4 px-5 py-3.5 border-b border-gray-200 bg-white shrink-0">
+      <p id="pdf-lightbox-title" class="text-xs font-mono text-gray-900 truncate">
+        Document
+      </p>
+
+      <div class="flex items-center gap-5 shrink-0">
+        <a
+          id="pdf-lightbox-external"
+          href="#"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="text-xs font-mono uppercase tracking-wider text-gray-600 hover:text-black transition-colors"
+        >
+          New Tab ↗
+        </a>
+        <button
+          id="pdf-lightbox-close"
+          type="button"
+          class="text-xs font-mono uppercase tracking-widest text-gray-900 hover:opacity-50 transition-opacity cursor-pointer"
+        >
+          Close [ESC]
+        </button>
+      </div>
+    </div>
+
+    {/* 본문 뷰어 */}
+    <div class="relative flex-1 w-full bg-neutral-100">
+      <iframe
+        id="pdf-lightbox-frame"
+        src=""
+        title="Document Viewer"
+        allow="autoplay"
+        class="w-full h-full border-0"
+      ></iframe>
+    </div>
+  </div>
+</div>
+
+<script>
+  function getEmbedUrl(url: string): string | null {
+    const driveFileMatch = url.match(/drive\.google\.com\/file\/d\/([a-zA-Z0-9_-]+)/);
+    if (driveFileMatch?.[1]) {
+      return `https://drive.google.com/file/d/${driveFileMatch[1]}/preview`;
+    }
+
+    const driveIdMatch = url.match(/drive\.google\.com\/(?:open|uc)\?.*[?&]?id=([a-zA-Z0-9_-]+)/);
+    if (driveIdMatch?.[1]) {
+      return `https://drive.google.com/file/d/${driveIdMatch[1]}/preview`;
+    }
+
+    if (/\.pdf($|[?#])/i.test(url)) {
+      return url.includes("#") ? url : `${url}#view=FitH`;
+    }
+
+    return null;
+  }
+
+  function initPdfLightbox() {
+    const modal = document.getElementById("pdf-lightbox");
+    const targetId = modal?.dataset.targetId || "text-content";
+    const contentArea = document.getElementById(targetId);
+    const frame = document.getElementById("pdf-lightbox-frame") as HTMLIFrameElement | null;
+    const titleEl = document.getElementById("pdf-lightbox-title");
+    const externalLink = document.getElementById("pdf-lightbox-external") as HTMLAnchorElement | null;
+    const closeBtn = document.getElementById("pdf-lightbox-close");
+
+    if (!contentArea || !modal || !frame || !titleEl || !externalLink || !closeBtn) return;
+    if (contentArea.dataset.pdfBound === "true") return;
+    contentArea.dataset.pdfBound = "true";
+
+    const openModal = (originalUrl: string, embedUrl: string, label: string) => {
+      titleEl.textContent = label || "Document";
+      externalLink.href = originalUrl;
+      frame.src = embedUrl;
+
+      modal.classList.remove("hidden");
+      modal.classList.add("flex");
+      document.body.style.overflow = "hidden";
+    };
+
+    const closeModal = () => {
+      modal.classList.add("hidden");
+      modal.classList.remove("flex");
+      frame.src = "";
+      document.body.style.overflow = "";
+    };
+
+    contentArea.addEventListener("click", (e) => {
+      const target = e.target as HTMLElement | null;
+      const anchor = target?.closest("a");
+      if (!anchor) return;
+
+      const embedUrl = getEmbedUrl(anchor.href);
+      if (!embedUrl) return;
+
+      if (window.innerWidth < 640) return;
+
+      e.preventDefault();
+      openModal(anchor.href, embedUrl, anchor.textContent?.trim() || "");
+    });
+
+    closeBtn.addEventListener("click", closeModal);
+
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) {
+        closeModal();
+      }
+    });
+  }
+
+  initPdfLightbox();
+  document.addEventListener("astro:page-load", initPdfLightbox);
+</script>

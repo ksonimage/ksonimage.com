@@ -1,6 +1,7 @@
 ---
 import ImageMod from "@/components/ImageMod.astro";
-import Gallery from "@/components/Gallery.astro"; // 💡 PhotoSwipe 갤러리 컴포넌트 추가
+import Gallery from "@/components/Gallery.astro";
+import PdfLightbox from "@/components/PdfLightbox.astro"; // 💡 추가
 
 const { data, Content } = Astro.props;
 
@@ -39,9 +40,9 @@ const plainTitle = rawTitle.replace(/["'\\`]/g, "").replace(/[\r\n]+/g, " ").tri
     <!-- 2. 두 번째 행: 6:4 비율의 본문 및 미디어 그리드 -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-start py-5">
 
-      <!-- 왼쪽 60% (7 columns) : 마크다운 본문 -->
+      <!-- 왼쪽 60% (7 columns) : 마크다운 본문 (id="works-content" 추가) -->
       <div class="lg:col-span-7 w-full">
-        <div class="content leading-relaxed text-base text-gray-700 space-y-6">
+        <div id="works-content" class="content leading-relaxed text-base text-gray-700 space-y-6">
           {Content && <Content />}
         </div>
       </div>
@@ -73,7 +74,6 @@ const plainTitle = rawTitle.replace(/["'\\`]/g, "").replace(/[\r\n]+/g, " ").tri
           </div>
         )}
 
-        {/* 💡 기존 ImageMod 반복문 대신 PhotoSwipe 라이트박스가 내장된 Gallery 컴포넌트로 교체 */}
         {galleryImages.length > 0 && (
           <div class="pt-2">
             <Gallery images={galleryImages} />
@@ -84,4 +84,7 @@ const plainTitle = rawTitle.replace(/["'\\`]/g, "").replace(/[\r\n]+/g, " ").tri
 
     </div>
   </div>
+
+  {/* 💡 작품 본문 내 Google Drive / PDF 링크 라이트박스 */}
+  <PdfLightbox targetId="works-content" />
 </section>
