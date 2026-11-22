@@ -28,6 +28,19 @@ const { images = [] } = Astro.props;
 <dialog id="floating-modal" class="fixed inset-0 z-50 p-0 m-auto bg-transparent backdrop:bg-black/50 backdrop:backdrop-blur-md border-0 focus:outline-none max-w-[95vw] max-h-[95vh] open:flex items-center justify-center">
   <div id="modal-backdrop-close" class="relative flex items-center justify-between w-full h-full p-4 sm:p-8 cursor-pointer select-none">
 
+    {/* 우측 상단 닫기(X) 버튼 */}
+    <button
+      id="modal-close-btn"
+      type="button"
+      aria-label="Close lightbox"
+      title="Close [ESC]"
+      class="absolute top-4 right-4 sm:top-6 sm:right-6 z-20 p-2.5 text-white/80 hover:text-white bg-black/35 hover:bg-black/65 backdrop-blur-sm rounded-full transition-all duration-200 cursor-pointer focus:outline-none select-none"
+    >
+      <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12"></path>
+      </svg>
+    </button>
+
     <button
       id="modal-prev-btn"
       type="button"
@@ -66,12 +79,15 @@ const { images = [] } = Astro.props;
   const initGallery = () => {
     const dialog = document.getElementById('floating-modal') as HTMLDialogElement | null;
     const modalImg = document.getElementById('modal-img') as HTMLImageElement | null;
+    const closeBtn = document.getElementById('modal-close-btn');
     const prevBtn = document.getElementById('modal-prev-btn');
     const nextBtn = document.getElementById('modal-next-btn');
     const backdropClose = document.getElementById('modal-backdrop-close');
     const buttons = Array.from(document.querySelectorAll('.gallery-thumb-btn'));
 
     if (!dialog || !modalImg || buttons.length === 0) return;
+    if (dialog.dataset.bound === 'true') return;
+    dialog.dataset.bound = 'true';
 
     let currentIndex = 0;
 
@@ -91,6 +107,11 @@ const { images = [] } = Astro.props;
           dialog.showModal();
         }
       });
+    });
+
+    closeBtn?.addEventListener('click', (e) => {
+      e.stopPropagation();
+      dialog.close();
     });
 
     prevBtn?.addEventListener('click', (e) => {
