@@ -1,7 +1,7 @@
 ---
 title: "손광주"
-meta_title: "About"
-description: ""
+meta_title: "Kwang-Ju Son"
+description: "CV, 작가소개"
 image: ""
 draft: false
 date: 2019-12-31

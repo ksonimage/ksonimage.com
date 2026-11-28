@@ -1,7 +1,7 @@
 ---
 title: "KWANG–JU SON"
-meta_title: "Artist"
-description: ""
+meta_title: "K.Son+Image"
+description: "CV, About K.Son"
 image: ""
 draft: false
 date: 2020-01-01
